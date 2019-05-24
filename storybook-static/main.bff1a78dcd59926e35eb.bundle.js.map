@@ -1,0 +1,1 @@
+{"version":3,"file":"main.bff1a78dcd59926e35eb.bundle.js","sources":["webpack:///./src/ui/layout/ConfirmModal/index.js"],"sourcesContent":["import React from 'react'\nimport { Modal } from 'antd'\n\nconst ConfirmModal = props => <Modal {...props} />\n\nexport default ConfirmModal\n"],"mappings":"AAAA","sourceRoot":""}
