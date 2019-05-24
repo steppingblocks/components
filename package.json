@@ -1,6 +1,7 @@
 {
   "name": "components",
   "version": "1.0.0",
+  "homepage": "https://masiamj.github.io/components",
   "description": "A test component library with component viewer",
   "author": "masiamj",
   "license": "MIT",
