@@ -5,14 +5,14 @@
   "github": {
     "release": true
   },
+  "npm": {
+    "access": "public",
+    "publish": false
+  },
   "plugins": {
     "@release-it/conventional-changelog": {
-      "preset": "angular",
       "infile": "CHANGELOG.md"
     }
-  },
-  "publishConfig": {
-    "access": "public"
   },
   "scripts": {
     "beforeStart": ["npm run lint"]
