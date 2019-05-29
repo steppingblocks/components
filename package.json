@@ -16,14 +16,13 @@
   "scripts": {
     "build-storybook": "build-storybook",
     "build": "rollup -c",
+    "commit": "git-cz",
     "generate:component:dumb": "hygen component dumb",
     "generate:component:hoc": "hygen component hoc",
     "lint": "lint-staged",
     "prepare": "npm run build",
     "publicize": "gh-pages -d storybook-static",
-    "release:major": "release-it major --ci",
-    "release:minor": "release-it minor --ci",
-    "release:patch": "release-it patch --ci",
+    "release": "release-it --ci --dry-run",
     "start": "rollup -c -w",
     "storybook": "start-storybook -p 6006",
     "test:watch": "react-scripts test --env=jsdom",
@@ -35,6 +34,9 @@
     "react-dom": "^15.0.0 || ^16.0.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^7.6.1",
+    "@commitlint/config-conventional": "^7.6.0",
+    "@commitlint/prompt": "^7.6.1",
     "@release-it/conventional-changelog": "^1.1.0",
     "@storybook/addon-actions": "^5.0.11",
     "@storybook/addon-knobs": "^5.0.11",
@@ -48,6 +50,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "commitizen": "^3.1.1",
     "cross-env": "^5.1.4",
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^4.3.0",
@@ -82,6 +85,7 @@
   },
   "husky": {
     "hooks": {
+      "commit-msg": "./node_modules/.bin/commitlint -E HUSKY_GIT_PARAMS",
       "pre-commit": "./node_modules/.bin/lint-staged"
     }
   },
@@ -90,5 +94,10 @@
       "./node_modules/.bin/prettier --check --write --config .prettierrc ./src/**/*",
       "git add"
     ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "@commitlint/prompt"
+    }
   }
 }
