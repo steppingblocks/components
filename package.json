@@ -20,8 +20,13 @@
     "start": "rollup -c -w",
     "prepare": "npm run build",
     "publicize": "gh-pages -d storybook-static",
+    "release:dry": "release-it --dry-run",
+    "release:major": "release-it major --ci",
+    "release:minor": "release-it minor --ci",
+    "release:patch": "release-it patch --ci",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
+    "lint": "lint-staged",
     "generate:component:dumb": "hygen component dumb",
     "generate:component:hoc": "hygen component hoc"
   },
@@ -31,6 +36,7 @@
     "react-dom": "^15.0.0 || ^16.0.0"
   },
   "devDependencies": {
+    "@release-it/conventional-changelog": "^1.1.0",
     "@storybook/addon-actions": "^5.0.11",
     "@storybook/addon-knobs": "^5.0.11",
     "@storybook/addon-links": "^5.0.11",
