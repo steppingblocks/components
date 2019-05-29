@@ -14,21 +14,20 @@
     "npm": ">=5"
   },
   "scripts": {
-    "test": "cross-env CI=1 react-scripts test --env=jsdom",
-    "test:watch": "react-scripts test --env=jsdom",
+    "build-storybook": "build-storybook",
     "build": "rollup -c",
-    "start": "rollup -c -w",
+    "generate:component:dumb": "hygen component dumb",
+    "generate:component:hoc": "hygen component hoc",
+    "lint": "lint-staged",
     "prepare": "npm run build",
     "publicize": "gh-pages -d storybook-static",
-    "release:dry": "release-it --dry-run",
     "release:major": "release-it major --ci",
     "release:minor": "release-it minor --ci",
     "release:patch": "release-it patch --ci",
+    "start": "rollup -c -w",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
-    "lint": "lint-staged",
-    "generate:component:dumb": "hygen component dumb",
-    "generate:component:hoc": "hygen component hoc"
+    "test:watch": "react-scripts test --env=jsdom",
+    "test": "cross-env SKIP_PREFLIGHT_CHECK=true CI=1 react-scripts test --env=jsdom --passWithNoTests"
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",
