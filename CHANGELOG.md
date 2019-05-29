@@ -1,3 +1,7 @@
+## <small>1.0.2 (2019-05-29)</small>
+
+* Fixes preflight babel check ([bfd2fdf](https://github.com/masiamj/components/commit/bfd2fdf))
+
 ## <small>1.0.1 (2019-05-29)</small>
 
 * Adds additional config to release-it ([b895691](https://github.com/masiamj/components/commit/b895691))
