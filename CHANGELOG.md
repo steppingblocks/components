@@ -1,3 +1,5 @@
+## <small>1.0.4 (2019-05-29)</small>
+
 ## <small>1.0.3 (2019-05-29)</small>
 
 * Updates README with release commands ([1368a3e](https://github.com/masiamj/components/commit/1368a3e))
