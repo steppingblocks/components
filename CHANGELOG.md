@@ -1,3 +1,7 @@
+## <small>1.0.3 (2019-05-29)</small>
+
+* Updates README with release commands ([1368a3e](https://github.com/masiamj/components/commit/1368a3e))
+
 ## <small>1.0.2 (2019-05-29)</small>
 
 * Fixes preflight babel check ([bfd2fdf](https://github.com/masiamj/components/commit/bfd2fdf))
