@@ -1,5 +1,6 @@
 {
   "git": {
+    "tag": true,
     "tagName": "v${version}",
     "commitArgs": "--no-verify",
     "commitMessage": "chore(releases): release v${version}"
