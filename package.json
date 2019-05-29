@@ -22,7 +22,7 @@
     "lint": "lint-staged",
     "prepare": "npm run build",
     "publicize": "gh-pages -d storybook-static",
-    "release": "semantic-release --ci",
+    "release": "semantic-release",
     "start": "rollup -c -w",
     "storybook": "start-storybook -p 6006",
     "test:watch": "react-scripts test --env=jsdom",
