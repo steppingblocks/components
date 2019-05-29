@@ -1,8 +1,9 @@
 # components
 
-_A test component library with component viewer_
+_A test component library with component viewer and example development best-practices like automatic component generators, conventional commits, and semantic releases._
 
-[![NPM](https://img.shields.io/npm/v/components.svg)](https://www.npmjs.com/package/components)
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+
 
 ### Generators
 
@@ -18,20 +19,33 @@ npm run generate:component:dumb
 npm run generate:component:hoc
 ```
 
-### Releases
+## Contributing
 
-We use [release-it](https://github.com/release-it/release-it) to manage GitHub and NPM releases. The `release-it` commands will automatically generate tags, releases, and a [conventional-commits](https://www.conventionalcommits.org/en/v1.0.0-beta.4/) CHANGELOG with one command. The available release commands are:
+### Committing
+
+This project uses [conventional-commits](https://www.conventionalcommits.org/en/v1.0.0-beta.4/) and as such, has specific committing guidelines. **Your commit will be rejected if you do not adhere to these guidelines.**
+
+For the smoothest development experience, once your code is staged, commit with:
 
 ```bash
-# Patch release (X.X.Y) - Used for minor bug fixes
-npm run release:patch
-
-# Minor release (X.Y.X) - Used for new features and backward-compatible changes
-npm run release:minor
-
-# Major release (Y.X.X) - Used for breaking, backward-incompatible changes
-npm run release:major
+npm run commit
 ```
+
+This will trigger [commitizen](https://github.com/commitizen/cz-cli) to help you write effective, compliant commit messages.
+
+### Releases
+
+We use [semantic-release](https://github.com/semantic-release/semantic-release) to manage GitHub and NPM releases. The `semantic-release` commands will automatically generate tags, releases, and a [conventional-commits](https://www.conventionalcommits.org/en/v1.0.0-beta.4/) CHANGELOG with one command.
+
+The releases will happen in response to merged PRs on this Repo and should not be triggered locally.
+
+**If you know what you're doing** and really want to trigger a release to GitHub and NPM on your local machine, you can run:
+
+```bash
+npm run release -- --no-ci
+```
+
+You'll notice that we do not have to specify the specific type of version upgrade `(patch|minor|major)`. Semantic-release will automatically parse our conventional commit messages and generate the proper semantic version upgrade for us.
 
 ## License
 
