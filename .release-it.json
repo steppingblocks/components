@@ -1,6 +1,7 @@
 {
   "git": {
-    "tagName": "v${version}"
+    "tagName": "v${version}",
+    "commitArgs": "--no-verify"
   },
   "github": {
     "release": true
@@ -15,6 +16,8 @@
     }
   },
   "scripts": {
-    "beforeStart": ["npm run lint"]
+    "beforeStart": [
+      "npm run lint"
+    ]
   }
 }
