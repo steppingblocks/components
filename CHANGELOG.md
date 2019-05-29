@@ -1,4 +1,9 @@
+# [1.1.0](https://github.com/masiamj/components/compare/v1.0.5...v1.1.0) (2019-05-29)
 
+
+### Features
+
+* **releases:** includes changelog plugin ([ab0aab5](https://github.com/masiamj/components/commit/ab0aab5))
 
 ## <small>1.0.4 (2019-05-29)</small>
 
