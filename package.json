@@ -93,13 +93,12 @@
   "husky": {
     "hooks": {
       "commit-msg": "./node_modules/.bin/commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "./node_modules/.bin/lint-staged"
+      "pre-commit": "./node_modules/.bin/lint-staged && npm test"
     }
   },
   "lint-staged": {
     "./src/**/*.js": [
       "./node_modules/.bin/prettier --check --write --config .prettierrc ./src/**/*",
-      "npm run test",
       "git add"
     ]
   },
