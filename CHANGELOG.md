@@ -1,3 +1,11 @@
+# [1.2.0](https://github.com/masiamj/components/compare/v1.1.0...v1.2.0) (2019-06-01)
+
+
+### Features
+
+* **releases:** fixes failing tests ([d3b26e4](https://github.com/masiamj/components/commit/d3b26e4))
+* **tests:** adds the ability to autogenerate dumb comp test files ([94b754f](https://github.com/masiamj/components/commit/94b754f))
+
 # [1.1.0](https://github.com/masiamj/components/compare/v1.0.5...v1.1.0) (2019-05-29)
 
 
