@@ -5,7 +5,7 @@ import React from 'react'
 import Box from 'ui-box'
 
 const <%=name%> = BaseComponent => ({ wrapperProps, ...props }) => {
-  // @TODO Your logic goes here
+  // @TODO Your logic goes here...
   
   return (
     <Box {...wrapperProps}>
