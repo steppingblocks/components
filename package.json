@@ -6,7 +6,7 @@
   "author": "masiamj",
   "license": "MIT",
   "repository": "masiamj/components",
-  "main": "dist/bundle.js",
+  "main": "dist/index.js",
   "engines": {
     "node": ">=8",
     "npm": ">=5"
