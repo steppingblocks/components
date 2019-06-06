@@ -36,22 +36,10 @@ module.exports = {
   },
   plugins: [
     new CompressionPlugin(),
-    new BundleAnalyzerPlugin({ analyzerMode: 'static' })
+    new BundleAnalyzerPlugin({ analyzerMode: 'static', openAnalyzer: false })
   ],
   resolve: {
     extensions: ['.less', '.js', '.json']
-  },
-  optimization: {
-    usedExports: true,
-    splitChunks: {
-      cacheGroups: {
-        commons: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
-          chunks: 'all'
-        }
-      }
-    }
   },
   output: {
     filename: 'bundle.js',
