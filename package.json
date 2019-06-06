@@ -2,7 +2,7 @@
   "name": "components",
   "version": "1.2.0",
   "homepage": "https://masiamj.github.io/components",
-  "description": "A test component library with component viewer",
+  "description": "A test component library with component viewer!",
   "author": "masiamj",
   "license": "MIT",
   "repository": "masiamj/components",
@@ -71,6 +71,7 @@
     "jest-dom": "^3.4.0",
     "less-loader": "^5.0.0",
     "lint-staged": "^8.1.7",
+    "parcel-bundler": "^1.12.3",
     "prettier": "^1.17.1",
     "react": "^16.8.6",
     "react-dom": "^16.4.1",
@@ -94,7 +95,7 @@
   "husky": {
     "hooks": {
       "commit-msg": "./node_modules/.bin/commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "./node_modules/.bin/lint-staged && npm test"
+      "pre-commit": "./node_modules/.bin/lint-staged"
     }
   },
   "lint-staged": {
