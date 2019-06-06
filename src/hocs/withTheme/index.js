@@ -1,4 +1,3 @@
-import 'normalize.css'
 import React from 'react'
 import { Box, ThemeProvider } from '@xstyled/styled-components'
 

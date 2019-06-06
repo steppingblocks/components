@@ -12,7 +12,7 @@ const MultiColumnLayout = props => (
     type="flex"
     align="middle"
     justify="space-between"
-    gutter={16}
+    gutter={8}
     {...get(props, 'rowProps')}
   >
     {get(props, 'columns').map((column, index) => (

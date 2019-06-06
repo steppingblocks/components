@@ -49,15 +49,27 @@ stories
 
     const columns = [
       {
-        colProps: { xs: { span: 24 }, md: { span: 8 } },
+        colProps: {
+          xs: { span: 24 },
+          md: { span: 8 },
+          border: '2px solid red'
+        },
         component: children
       },
       {
-        colProps: { xs: { span: 0 }, md: { span: 10 } },
+        colProps: {
+          xs: { span: 0 },
+          md: { span: 10 },
+          border: '2px solid blue'
+        },
         component: children
       },
       {
-        colProps: { xs: { span: 0 }, md: { span: 4 } },
+        colProps: {
+          xs: { span: 0 },
+          md: { span: 4 },
+          border: '2px solid green'
+        },
         component: children
       }
     ]
