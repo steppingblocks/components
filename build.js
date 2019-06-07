@@ -1,5 +1,7 @@
 const Bundler = require('parcel-bundler')
 
+// const isProduction = process.env.NODE_ENV === 'production'
+
 new Bundler('./src/index.js', {
   outDir: 'dist',
   target: 'browser',
