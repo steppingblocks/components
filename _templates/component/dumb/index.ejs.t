@@ -1,5 +1,5 @@
 ---
-to: src/lib/<%=name%>/index.js
+to: src/<%=name%>/index.js
 ---
 import React from 'react'
 import PT from 'prop-types'

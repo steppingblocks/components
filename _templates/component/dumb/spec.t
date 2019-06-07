@@ -1,5 +1,5 @@
 ---
-to: src/lib/<%=name%>/index.spec.js
+to: src/<%=name%>/index.spec.js
 ---
 import React from 'react'
 import 'jest-dom/extend-expect'

@@ -1,5 +1,5 @@
 ---
-to: src/lib/<%=name%>/index.stories.js
+to: src/<%=name%>/index.stories.js
 ---
 import React from 'react'
 import { storiesOf } from '@storybook/react'

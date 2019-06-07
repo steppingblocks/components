@@ -7,7 +7,7 @@ const libDirs = fs.readdirSync('./src/lib')
 
 const getEntries = _fp.pipe(
   _fp.map(dir => `${dir}/index.js`),
-  _fp.map(entry => path.resolve(__dirname, 'src/lib', entry))
+  _fp.map(entry => path.resolve(__dirname, 'src', entry))
 )
 
 const entries = getEntries(libDirs)
