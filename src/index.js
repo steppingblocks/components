@@ -1,3 +1,4 @@
+import '../variables.less'
 export { default as CenteredLayout } from './ui/layout/CenteredLayout'
 export { default as ConfirmModal } from './ui/layout/ConfirmModal'
 export { default as CustomButton } from './ui/touchables/CustomButton'
