@@ -11,13 +11,14 @@
     "node": ">=8",
     "npm": ">=5"
   },
+  "browserslist": [
+    "defaults"
+  ],
   "scripts": {
     "build-storybook": "build-storybook",
-    "clean": "rimraf dist && rimraf lib",
-    "build": "run-s clean && run-p build:lib:es",
-    "build:legacy": "NODE_ENV=production node build.js",
-    "build:es": "NODE_ENV=es rollup -c",
-    "build:lib:es": "BABEL_ENV=es babel src -d lib",
+    "clean": "rimraf dist",
+    "build": "run-s clean && run-p build:lib",
+    "build:lib": "BABEL_ENV=es babel src -d lib",
     "commit": "git-cz",
     "generate:component:dumb": "hygen component dumb",
     "generate:component:hoc": "hygen component hoc",
@@ -75,6 +76,7 @@
     "babel-eslint": "^9.0.0",
     "babel-loader": "^8.0.0",
     "babel-plugin-import": "^1.12.0",
+    "browserslist": "^4.6.1",
     "commitizen": "^3.1.1",
     "cross-env": "^5.1.4",
     "eslint": "^5.16.0",
@@ -85,7 +87,6 @@
     "eslint-plugin-promise": "^4.0.0",
     "eslint-plugin-react": "^7.10.0",
     "gh-pages": "^1.2.0",
-    "glob": "^7.1.4",
     "husky": "^2.3.0",
     "hygen": "^4.0.2",
     "jest-dom": "^3.4.0",
@@ -93,9 +94,6 @@
     "less-loader": "^5.0.0",
     "lint-staged": "^8.1.7",
     "npm-run-all": "^4.1.5",
-    "parcel-bundler": "^1.12.3",
-    "parcel-plugin-bundle-visualiser": "^1.2.0",
-    "parcel-plugin-less-js-enabled": "^1.0.2",
     "prettier": "^1.17.1",
     "react": "^16.8.6",
     "react-dom": "^16.4.1",
@@ -113,8 +111,7 @@
     "rollup-plugin-url": "^2.2.1",
     "semantic-release": "^15.13.12",
     "style-loader": "^0.23.1",
-    "webpack": "^4.33.0",
-    "webpack-cli": "^3.3.2"
+    "webpack": "^4.33.0"
   },
   "files": [
     "lib"
