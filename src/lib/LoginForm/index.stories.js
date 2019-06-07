@@ -1,22 +1,15 @@
----
-to: src/lib/<%=name%>/index.stories.js
----
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import { boolean, text, withKnobs } from '@storybook/addon-knobs'
-import <%=name%> from './index'
+import LoginForm from './index'
 
-const stories = storiesOf('<%=name%>', module)
+const stories = storiesOf('LoginForm', module)
 
 stories.add('default', () => {
-  const props = {
+  const props = {}
 
-  }
-
-  return <<%=name%> {...props} />
+  return <LoginForm {...props} />
 })
 
 stories.addDecorator(withKnobs)
-
-
