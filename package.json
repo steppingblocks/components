@@ -6,7 +6,8 @@
   "author": "masiamj",
   "license": "MIT",
   "repository": "masiamj/components",
-  "module": "lib",
+  "main": "dist",
+  "module": "dist",
   "engines": {
     "node": ">=8",
     "npm": ">=5"
@@ -17,8 +18,12 @@
   "scripts": {
     "build-storybook": "build-storybook",
     "clean": "rimraf dist",
-    "build": "run-s clean && run-p build:lib",
+    "build": "run-s clean && run-p build:lib build:es",
+    "build:watch": "run-p build:lib:watch",
+    "build:es": "rollup -c",
+    "build:es:watch": "rollup -c -w",
     "build:lib": "BABEL_ENV=es babel src -d lib",
+    "build:lib:watch": "BABEL_ENV=es babel src -w -d lib",
     "commit": "git-cz",
     "generate:component:dumb": "hygen component dumb",
     "generate:component:hoc": "hygen component hoc",
@@ -114,6 +119,7 @@
     "webpack": "^4.33.0"
   },
   "files": [
+    "dist",
     "lib"
   ],
   "dependencies": {

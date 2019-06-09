@@ -7,18 +7,13 @@ import multiInput from 'rollup-plugin-multi-input'
 import postcss from 'rollup-plugin-postcss'
 import resolve from 'rollup-plugin-node-resolve'
 import url from 'rollup-plugin-url'
-import pkg from './package.json'
-
-const env = process.env.NODE_ENV
 
 export default {
   input: ['src/**/index.js'],
   output: {
     dir: 'dist',
-    file: {
-      es: pkg.module
-    }[env],
-    format: env
+    format: 'es',
+    sourcemap: 'inline'
   },
   external: ['react', '@xstyled/styled-components'],
   plugins: [
