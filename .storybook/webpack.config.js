@@ -6,6 +6,7 @@ module.exports = async ({ config }) => {
     use: [
       'style-loader',
       'css-loader',
+      'sass-loader',
       {
         loader: 'less-loader',
         options: {

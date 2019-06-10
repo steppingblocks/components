@@ -1,7 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { action } from '@storybook/addon-actions'
-import { boolean, select, text, withKnobs } from '@storybook/addon-knobs'
+import { select, withKnobs } from '@storybook/addon-knobs'
 import PasswordInput from './index'
 
 const stories = storiesOf('PasswordInput', module)

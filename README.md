@@ -4,7 +4,6 @@ _A test component library with component viewer and example development best-pra
 
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
-
 ### Generators
 
 We use the awesome [hygen](http://www.hygen.io/) generator to automatically create components, stories and tests.
@@ -46,6 +45,12 @@ npm run release -- --no-ci
 ```
 
 You'll notice that we do not have to specify the specific type of version upgrade `(patch|minor|major)`. Semantic-release will automatically parse our conventional commit messages and generate the proper semantic version upgrade for us.
+
+## Todo
+
+- [ ] Increase test coverage
+- [ ] Add generic react-vis charts
+- [ ] Implement Docz documentation site
 
 ## License
 

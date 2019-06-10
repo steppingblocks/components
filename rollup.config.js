@@ -9,7 +9,7 @@ import resolve from 'rollup-plugin-node-resolve'
 import url from 'rollup-plugin-url'
 
 export default {
-  input: ['src/**/index.js'],
+  input: ['src/**/index.js', 'src/vendorStyles.js'],
   output: {
     dir: 'dist',
     format: 'es',
