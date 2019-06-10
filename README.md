@@ -50,7 +50,7 @@ You'll notice that we do not have to specify the specific type of version upgrad
 
 - [ ] Increase test coverage
 - [ ] Add generic react-vis charts
-- [ ] Implement Docz documentation site
+- [ ] Implement Docsify documentation site
 
 ## License
 

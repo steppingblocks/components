@@ -3,6 +3,7 @@ import PT from 'prop-types'
 import get from 'lodash/get'
 import { Col, Row } from 'antd'
 import { withTheme } from '../withTheme'
+import { RowPT } from '../proptypes'
 
 const SCol = withTheme(Col)
 const SRow = withTheme(Row)
@@ -23,7 +24,7 @@ const CenteredLayout = props => (
 
 CenteredLayout.propTypes = {
   colProps: PT.object,
-  rowProps: PT.object
+  rowProps: RowPT
 }
 
 export default CenteredLayout
