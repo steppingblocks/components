@@ -1,9 +1,13 @@
 import React from 'react'
+import PT from 'prop-types'
 import SingleLineTextInput from '../SingleLineTextInput'
+import { InputProps } from '../proptypes'
 
 const EmailInput = props => <SingleLineTextInput icon="mail" {...props} />
 
-EmailInput.propTypes = {}
+EmailInput.propTypes = {
+  ...InputProps
+}
 
 export default EmailInput
 

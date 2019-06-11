@@ -20,7 +20,7 @@ stories.add('default', () => {
     onCancel: action('onCancel'),
     onOk: action('onOk'),
     title: text('title', 'Are you sure you want to do that?'),
-    visible: boolean('visible', true)
+    visible: boolean('visible', false)
   }
   return <ConfirmModal {...props} />
 })

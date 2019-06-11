@@ -23,6 +23,7 @@ const CenteredLayout = props => (
 )
 
 CenteredLayout.propTypes = {
+  children: PT.element.isRequired,
   colProps: PT.object,
   rowProps: RowPT
 }
