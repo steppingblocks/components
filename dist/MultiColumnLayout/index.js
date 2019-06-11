@@ -1,28 +1,28 @@
 import '../chunk-d8a06a3d.js';
-import '../chunk-0778d5d4.js';
-import '../chunk-13e84b1f.js';
+import { _ as _extends, w as withTheme } from '../withTheme/index-07393603.js';
+import '../chunk-33557649.js';
+import '../chunk-e5261667.js';
 import '../chunk-eda5d4be.js';
-import { a as _Row } from '../chunk-8cb5051e.js';
+import { a as _Row } from '../chunk-d09ead65.js';
 import React__default from 'react';
 import PropTypes from 'prop-types';
-import '../chunk-6e44f481.js';
-import { _ as _Col } from '../chunk-c5c38094.js';
-import '../chunk-cac7487f.js';
-import { g as get } from '../chunk-fbb69a11.js';
+import '../chunk-1722f712.js';
+import { _ as _Col } from '../chunk-aa78c840.js';
+import '../chunk-1c029dd0.js';
+import { g as get } from '../chunk-10518c5b.js';
 import '@xstyled/styled-components';
-import { withTheme } from '../withTheme/index.js';
 
 var SCol = withTheme(_Col);
 var SRow = withTheme(_Row);
 
 var MultiColumnLayout = function MultiColumnLayout(props) {
-  return React__default.createElement(SRow, babelHelpers["extends"]({
+  return React__default.createElement(SRow, _extends({
     type: "flex",
     align: "middle",
     justify: "space-between",
     gutter: 8
   }, get(props, 'rowProps')), get(props, 'columns').map(function (column, index) {
-    return React__default.createElement(SCol, babelHelpers["extends"]({
+    return React__default.createElement(SCol, _extends({
       key: index
     }, get(column, 'colProps')), get(column, 'component'));
   }));

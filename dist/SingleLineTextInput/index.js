@@ -1,23 +1,23 @@
 import '../chunk-d8a06a3d.js';
-import { a as require$$2, _ as _configProvider } from '../chunk-0778d5d4.js';
+import { _ as _extends, w as withTheme } from '../withTheme/index-07393603.js';
+import { a as require$$2, _ as _configProvider } from '../chunk-33557649.js';
 import { a as createCommonjsModule, u as unwrapExports, b as React__default, r as require$$1$1 } from '../chunk-eda5d4be.js';
 import 'react';
 import 'prop-types';
-import { _ as _type } from '../chunk-6e44f481.js';
-import { e as arrayMap } from '../chunk-cac7487f.js';
-import { d as baseGet, c as toKey, e as castPath, g as get } from '../chunk-fbb69a11.js';
+import { _ as _type } from '../chunk-1722f712.js';
+import { e as arrayMap } from '../chunk-1c029dd0.js';
+import { d as baseGet, c as toKey, e as castPath, g as get } from '../chunk-10518c5b.js';
 import '@xstyled/styled-components';
-import { withTheme } from '../withTheme/index.js';
-import { j as flatRest } from '../chunk-63c8ffb1.js';
-import { i as isPlainObject, l as copyObject, a as baseClone, m as getAllKeysIn } from '../chunk-4078a03b.js';
-import '../chunk-1862c33d.js';
-import '../chunk-26044e16.js';
-import { r as require$$4$1 } from '../chunk-eb4ff43c.js';
-import { f as require$$3, r as require$$4, e as require$$6, i as _Icon } from '../chunk-167e2b08.js';
+import { j as flatRest } from '../chunk-57141010.js';
+import { i as isPlainObject, l as copyObject, a as baseClone, m as getAllKeysIn } from '../chunk-ef01fbd2.js';
+import '../chunk-2512a442.js';
+import '../chunk-be6096a0.js';
+import { r as require$$4$1 } from '../chunk-56f10e2e.js';
+import { f as require$$3, r as require$$4, e as require$$6, i as _Icon } from '../chunk-4ff4843b.js';
 import 'react-dom';
 import { r as require$$1$2 } from '../chunk-8820e6e0.js';
-import { _ as _reactLifecyclesCompat } from '../chunk-08f0fb15.js';
-import { b as baseSlice } from '../chunk-40313c1d.js';
+import { _ as _reactLifecyclesCompat } from '../chunk-462365a0.js';
+import { b as baseSlice } from '../chunk-6cdd341c.js';
 
 var Input_1 = createCommonjsModule(function (module, exports) {
 
@@ -2324,7 +2324,7 @@ var SingleLineTextInput = React__default.forwardRef(function (props, ref) {
     });
   }
 
-  return React__default.createElement(SInput, babelHelpers["extends"]({
+  return React__default.createElement(SInput, _extends({
     ref: ref
   }, omit_1(props, 'icon'), extraProps));
 });

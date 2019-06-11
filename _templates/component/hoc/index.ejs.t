@@ -2,16 +2,12 @@
 to: src/hocs/<%=name%>/index.js
 ---
 import React from 'react'
-import Box from 'ui-box'
+import { Box } from '@xstyled/styled-components'
 
-const <%=name%> = BaseComponent => ({ wrapperProps, ...props }) => {
+const <%=name%> = BaseComponent => (props) => {
   // @TODO Your logic goes here...
   
-  return (
-    <Box {...wrapperProps}>
-      <BaseComponent {...props} />
-    </Box>
-  )
+  return <BaseComponent as={BaseComponent} {...props} />
 }
 
 export default <%=name%>

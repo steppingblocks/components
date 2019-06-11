@@ -17,7 +17,7 @@
   ],
   "scripts": {
     "build-storybook": "build-storybook",
-    "build": "run-s clean && run-p build:es",
+    "build": "NODE_ENV=production run-s clean && run-p build:es",
     "build:watch": "run-p build:es:watch",
     "build:es": "rollup -c",
     "build:es:watch": "rollup -c -w",
@@ -26,7 +26,6 @@
     "generate:component:dumb": "hygen component dumb",
     "generate:component:hoc": "hygen component hoc",
     "lint": "lint-staged",
-    "prepare": "NODE_ENV=production npm run build",
     "publicize": "gh-pages -d storybook-static",
     "release": "semantic-release",
     "storybook": "start-storybook -p 6006",

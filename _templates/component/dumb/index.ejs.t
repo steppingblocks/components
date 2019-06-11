@@ -10,5 +10,7 @@ const <%=name%> = props => (
 
 <%=name%>.propTypes = {}
 
+<%=name%>.defaultProps = {}
+
 export default <%=name%>
 

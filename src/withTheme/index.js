@@ -36,13 +36,10 @@ const sampleTheme = {
  * that provides the theme to xstyled components
  * @param {Object} theme Sample theme
  */
-const createThemeHOC = (theme = sampleTheme) => BaseComponent => ({
-  wrapperProps,
-  ...props
-}) => {
+const createThemeHOC = (theme = sampleTheme) => BaseComponent => props => {
   return (
     <ThemeProvider theme={theme}>
-      <Box as={BaseComponent} {...wrapperProps} {...props} />
+      <Box as={BaseComponent} {...props} />
     </ThemeProvider>
   )
 }

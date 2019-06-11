@@ -13,3 +13,18 @@ describe('<%=name%>', () => {
     expect(true).toBeTruthy() 
   })
 })
+
+describe('<%=name%>', () => {
+  it('should render', () => {
+    const content = 'See me!'
+    const spy = jest.fn()
+    const testID = 'test'
+
+    const { getByTestId } = render(
+      <<%=name%> data-testid={testID}>{content}</<%=name%>>
+    )
+
+    const element = getByTestId(testID)
+    expect(element.textContent).toBe(content)
+  })
+})
