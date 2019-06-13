@@ -2,27 +2,47 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { withKnobs } from '@storybook/addon-knobs'
 import {
-  AreaChart,
-  generateFakeAreaChartData,
-  generateFakeMultiLineChartData,
-  MultiLineChart
+  generateFakeSimpleBarData,
+  generateFakeStackedBarChartData,
+  generateFakeSunburstChartData,
+  generateFakeTreemapChartData,
+  SimpleBar,
+  StackedBarChart,
+  SunburstChart,
+  TreemapChart
 } from './index'
 
 const stories = storiesOf('Charts', module)
 
-stories.add('MultiLineChart', () => {
+stories.add('SimpleBar', () => {
   const props = {
-    data: generateFakeMultiLineChartData()
+    data: generateFakeSimpleBarData()
   }
-
-  return <MultiLineChart {...props} />
+  return <SimpleBar {...props} />
 })
-stories.add('AreaChart', () => {
+
+stories.add('StackedBarChart', () => {
   const props = {
-    data: generateFakeAreaChartData()
+    data: generateFakeStackedBarChartData()
+  }
+  return <StackedBarChart {...props} />
+})
+
+stories.add('Sunburst', () => {
+  const props = {
+    data: generateFakeSunburstChartData()
   }
 
-  return <AreaChart {...props} />
+  return <SunburstChart {...props} />
+})
+
+stories.add('Treemap', () => {
+  const props = {
+    data: generateFakeTreemapChartData(),
+    name: 'Sample'
+  }
+
+  return <TreemapChart {...props} />
 })
 
 stories.addDecorator(withKnobs)

@@ -1,11 +1,11 @@
 import React from 'react'
 import 'jest-dom/extend-expect'
 import { render, fireEvent, cleanup } from '@testing-library/react'
-import MultiLineChart from './index'
+import SimpleBar from './index'
 
 afterEach(cleanup)
 
-describe('MultiLineChart', () => {
+describe('SimpleBar', () => {
   it('should render', () => {
     expect(true).toBeTruthy()
   })

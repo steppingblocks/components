@@ -1,33 +1,10 @@
 /**
  * This file houses all custom charts which should be reusable molecules
  */
-import React, { useState } from 'react'
+import React from 'react'
 import PT from 'prop-types'
-import get from 'lodash/get'
-import _get from 'lodash/fp/get'
-import {
-  AreaSeries,
-  Crosshair,
-  FlexibleXYPlot,
-  XAxis,
-  YAxis,
-  HorizontalGridLines,
-  VerticalGridLines,
-  LineSeries,
-  Highlight
-} from 'react-vis'
+import ReactEcharts from 'echarts-for-react'
 import { withTheme } from '../withTheme'
-
-/**
- * ==================================================
- * Common props
- * ==================================================
- */
-const LARGE = new Array(100).fill(0)
-const SMALL = new Array(4).fill(0)
-
-const large = LARGE.map((_, idx) => idx)
-const small = SMALL.map((_, idx) => idx)
 
 /**
  * ==================================================
@@ -36,183 +13,528 @@ const small = SMALL.map((_, idx) => idx)
  * ==================================================
  */
 const NumberOrStringPT = PT.oneOfType([PT.number, PT.string])
-const ScalePT = PT.oneOf([
-  'category',
-  'linear',
-  'literal',
-  'log',
-  'ordinal',
-  'time-utc',
-  'time'
-])
-const SeriesPT = PT.shape({
-  x: NumberOrStringPT,
-  y: NumberOrStringPT
-})
 
 /**
  * ==================================================
  * Common getters/utils
  * ==================================================
  */
-const getTop = _get('top')
-const getRight = _get('right')
-const getBottom = _get('bottom')
-const getLeft = _get('left')
-
-const getXDomain = location =>
-  location ? [getLeft(location), getRight(location)] : null
-
-const getYDomain = location =>
-  location ? [getBottom(location), getTop(location)] : null
-
 const getRandomNumberInRange = (min = 0, max = 10) =>
   Math.floor(Math.random() * max) + min
 
 /**
  * ==================================================
- * AreaChart
+ * Utility functions for getting random color
  * ==================================================
  */
-export const generateFakeAreaChartData = () =>
-  small.map(idx => ({ x: idx, y: getRandomNumberInRange(0, 10), key: idx }))
+const colors = [
+  '#30BC9D',
+  '#FF9552',
+  '#5099DE',
+  '#EE6352',
+  '#68CEB7',
+  '#FFA871',
+  '#7FB4E7',
+  '#F28D81',
+  '#338472',
+  '#D17A44',
+  '#33628E',
+  '#A04438',
+  '#30BC9D',
+  '#FF9552',
+  '#5099DE',
+  '#EE6352',
+  '#68CEB7',
+  '#FFA871',
+  '#7FB4E7',
+  '#F28D81',
+  '#338472',
+  '#D17A44',
+  '#33628E',
+  '#A04438'
+]
+const popRandomColor = () => colors[Math.floor(Math.random() * colors.length)]
 
-export const AreaChart = withTheme(({ data, ...rest }) => {
-  const [lastDrawLocation, setLastDrawLocation] = useState(null)
-  const [crosshairValues, setCrosshairValues] = useState([])
+/**
+ * ==================================================
+ * Sunburst
+ * ==================================================
+ */
+const createSunburstChildren = (root, level) => {
+  const data = []
+  const count = getRandomNumberInRange(1, 3)
+  for (let i = 1; i < count; i++) {
+    data.push({
+      name: `Node${i}`,
+      value: getRandomNumberInRange(1, 5),
+      children:
+        level === 0 ? [] : createSunburstChildren(`${root}.${i}`, level - 1),
+      itemStyle: { color: popRandomColor() },
+      label: { show: false }
+    })
+  }
+  return data
+}
 
-  const resetCrosshairValues = () => setCrosshairValues([])
+export const generateFakeSunburstChartData = () => {
+  const levels = getRandomNumberInRange(2, 4)
+  const data = []
 
-  const onNearestX = (_, { index }) => {
-    const values = _get(index)(data)
-    setCrosshairValues([values])
+  for (let i = 1; i < levels; i++) {
+    data.push({
+      name: `Node${i}`,
+      value: getRandomNumberInRange(1, 5),
+      children: createSunburstChildren(i, levels),
+      itemStyle: { color: popRandomColor() },
+      label: { show: false }
+    })
+  }
+
+  return data
+  /*return [
+    {
+    children: [{
+      value: 5,
+      children: [{
+        value: 1,
+        itemStyle: { color: popRandomColor() }
+      }, {
+        value: 2,
+        children: [{
+          value: 1,
+          itemStyle: { color: popRandomColor() }
+        }]
+      }, {
+        children: [{
+          value: 1
+        }]
+      }],
+      itemStyle: { color: popRandomColor() }
+    }, {
+      value: 10,
+      children: [{
+        value: 6,
+        children: [{
+          value: 1,
+          itemStyle: { color: popRandomColor() }
+        }, {
+          value: 1
+        }, {
+          value: 1,
+          itemStyle: { color: popRandomColor() }
+        }, {
+          value: 1
+        }],
+        itemStyle: { color: popRandomColor() }
+      }, {
+        value: 2,
+        children: [{
+          value: 1
+        }],
+        itemStyle: { color: popRandomColor() }
+      }, {
+        children: [{
+          value: 1,
+          itemStyle: { color: popRandomColor() }
+        }]
+      }],
+      itemStyle: { color: popRandomColor() }
+    }],
+    itemStyle: { color: popRandomColor() }
+  }, {
+    value: 9,
+    children: [{
+      value: 4,
+      children: [{
+        value: 2,
+        itemStyle: { color: popRandomColor() }
+      }, {
+        children: [{
+          value: 1,
+          itemStyle: { color: popRandomColor() }
+        }]
+      }],
+      itemStyle: { color: popRandomColor() }
+    }, {
+      children: [{
+        value: 3,
+        children: [{
+          value: 1
+        }, {
+          value: 1,
+          itemStyle: { color: popRandomColor() }
+        }]
+      }],
+      itemStyle: { color: popRandomColor() }
+    }],
+    itemStyle: { color: popRandomColor() }
+  }, {
+    value: 7,
+    children: [{
+      children: [{
+        value: 1,
+        itemStyle: { color: popRandomColor() }
+      }, {
+        value: 3,
+        children: [{
+          value: 1,
+          itemStyle: { color: popRandomColor() }
+        }, {
+          value: 1
+        }],
+        itemStyle: { color: popRandomColor() }
+      }, {
+        value: 2,
+        children: [{
+          value: 1
+        }, {
+          value: 1,
+          itemStyle: { color: popRandomColor() }
+        }],
+        itemStyle: { color: popRandomColor() }
+      }],
+      itemStyle: { color: popRandomColor() }
+    }],
+    itemStyle: { color: popRandomColor() }
+  }, {
+    children: [{
+      value: 6,
+      children: [{
+        value: 1,
+        itemStyle: { color: popRandomColor() }
+      }, {
+        value: 2,
+        children: [{
+          value: 2,
+          itemStyle: { color: popRandomColor() }
+        }],
+        itemStyle: { color: popRandomColor() }
+      }, {
+        value: 1,
+        itemStyle: { color: popRandomColor() }
+      }],
+      itemStyle: { color: popRandomColor() }
+    }, {
+      value: 3,
+      children: [{
+        value: 1,
+      }, {
+        children: [{
+          value: 1,
+          itemStyle: { color: popRandomColor() }
+        }]
+      }, {
+        value: 1
+      }],
+      itemStyle: { color: popRandomColor() }
+    }],
+    itemStyle: { color: popRandomColor() }
+  }]*/
+}
+
+export const SunburstChart = withTheme(({ data, height, ...rest }) => {
+  const option = {
+    series: {
+      radius: ['15%', '80%'],
+      type: 'sunburst',
+      sort: null,
+      highlightPolicy: 'ancestor',
+      data: data,
+      label: {
+        rotate: 'radial'
+      },
+      levels: [],
+      itemStyle: {
+        color: '#ddd',
+        borderWidth: 2
+      }
+    },
+    tooltip: {
+      formatter: function(info) {
+        return [
+          '<div class="tooltip-title">' +
+            info.data.name +
+            ' : ' +
+            info.data.value +
+            '</div>'
+        ].join('')
+      }
+    }
   }
 
   return (
-    <FlexibleXYPlot
-      animation
-      onMouseLeave={resetCrosshairValues}
-      xDomain={getXDomain(lastDrawLocation)}
-      yDomain={getYDomain(lastDrawLocation)}
+    <ReactEcharts
+      option={option}
+      style={{ height: height ? height : '400px', width: '100%' }}
       {...rest}
-    >
-      <HorizontalGridLines />
-      <VerticalGridLines />
-      <XAxis />
-      <YAxis />
-      <AreaSeries data={data} onNearestX={onNearestX} />
-      <Highlight
-        drag
-        onBrushEnd={setLastDrawLocation}
-        onDrag={({ top, right, bottom, left }) =>
-          setLastDrawLocation({
-            bottom: getBottom(lastDrawLocation) + (top - bottom),
-            left: getLeft(lastDrawLocation) - (right - left),
-            right: getRight(lastDrawLocation) - (right - left),
-            top: getTop(lastDrawLocation) + (top - bottom)
-          })
-        }
-      />
-      <Crosshair values={crosshairValues} />
-    </FlexibleXYPlot>
+    />
   )
 })
 
-AreaChart.propTypes = {
+SunburstChart.propTypes = {
   className: PT.string,
-  colorType: ScalePT,
-  data: PT.arrayOf(
-    PT.shape({
-      key: NumberOrStringPT,
-      x: NumberOrStringPT,
-      y: NumberOrStringPT
-    })
-  ).isRequired,
+  data: PT.array.isRequired,
   height: NumberOrStringPT,
   width: NumberOrStringPT
 }
 
-AreaChart.defaultProps = {
+SunburstChart.defaultProps = {
   height: 400
 }
 
 /**
  * ==================================================
- * MultiLineChart
+ * Treemap
  * ==================================================
  */
-export const generateFakeMultiLineChartData = () =>
-  small.reduce((acc, outerIdx) => {
-    const series = large.map((_, idx) => ({
-      x: idx,
-      y: (outerIdx / 10 + 1) * Math.sin((Math.PI * (outerIdx + idx)) / 50)
-    }))
-    return acc.concat({
-      animation: true,
-      color: outerIdx,
-      data: series,
-      key: outerIdx,
-      opacity: 0.8
+const createChildren = (root, level) => {
+  const data = []
+  const count = getRandomNumberInRange(2, 6)
+  for (let i = 1; i < count; i++) {
+    data.push({
+      name: `Node${root}.${i}`,
+      value: getRandomNumberInRange(5, 20),
+      children: level === 0 ? [] : createChildren(`${root}.${i}`, level - 1)
     })
-  }, [])
+  }
+  return data
+}
 
-export const MultiLineChart = withTheme(({ data, ...rest }) => {
-  const [lastDrawLocation, setLastDrawLocation] = useState(null)
-  const [crosshairValues, setCrosshairValues] = useState([])
+export const generateFakeTreemapChartData = () => {
+  const levels = getRandomNumberInRange(2, 6)
+  const data = []
 
-  const resetCrosshairValues = () => setCrosshairValues([])
+  for (let i = 1; i < levels; i++) {
+    data.push({
+      name: `Node${i}`,
+      value: getRandomNumberInRange(5, 20),
+      children: createChildren(i, levels)
+    })
+  }
 
-  const onNearestX = (_, { index }) => {
-    const values = data.map(datum => get(datum, `data.${index}`))
-    setCrosshairValues(values)
+  return data
+}
+
+export const TreemapChart = withTheme(({ data, name, height, ...rest }) => {
+  const getLevelOption = () => {
+    return [
+      {
+        itemStyle: {
+          normal: {
+            borderColor: '#777',
+            borderWidth: 0,
+            gapWidth: 1
+          }
+        },
+        upperLabel: {
+          normal: {
+            show: true
+          }
+        }
+      },
+      {
+        itemStyle: {
+          normal: {
+            borderColor: '#555',
+            borderWidth: 5,
+            gapWidth: 1
+          },
+          emphasis: {
+            borderColor: '#ddd'
+          }
+        }
+      },
+      {
+        colorSaturation: [0.35, 0.5],
+        itemStyle: {
+          normal: {
+            borderWidth: 5,
+            gapWidth: 1,
+            borderColorSaturation: 0.6
+          }
+        }
+      }
+    ]
+  }
+  const option = {
+    tooltip: {
+      formatter: function(info) {
+        const value = info.value
+        const treePathInfo = info.treePathInfo
+        const treePath = []
+
+        for (let i = 1; i < treePathInfo.length; i++) {
+          treePath.push(treePathInfo[i].name)
+        }
+
+        return [
+          '<div class="tooltip-title">' + treePath.join('/') + '</div>',
+          value
+        ].join('')
+      }
+    },
+    series: [
+      {
+        name,
+        type: 'treemap',
+        visibleMin: 300,
+        label: {
+          show: true,
+          formatter: '{b}'
+        },
+        /*upperLabel: {
+          normal: {
+            show: true,
+            height: 30
+          }
+        },*/
+        itemStyle: {
+          normal: {
+            borderColor: '#fff'
+          }
+        },
+        levels: getLevelOption(),
+        data
+      }
+    ]
   }
 
   return (
-    <FlexibleXYPlot
-      animation
-      onMouseLeave={resetCrosshairValues}
-      xDomain={getXDomain(lastDrawLocation)}
-      yDomain={getYDomain(lastDrawLocation)}
+    <ReactEcharts
+      option={option}
+      style={{ height: height ? height : '400px', width: '100%' }}
       {...rest}
-    >
-      <HorizontalGridLines />
-      <VerticalGridLines />
-      <XAxis />
-      <YAxis />
-      {data.map(props => (
-        <LineSeries {...props} onNearestX={onNearestX} />
-      ))}
-      <Highlight
-        drag
-        onBrushEnd={setLastDrawLocation}
-        onDrag={({ top, right, bottom, left }) =>
-          setLastDrawLocation({
-            bottom: getBottom(lastDrawLocation) + (top - bottom),
-            left: getLeft(lastDrawLocation) - (right - left),
-            right: getRight(lastDrawLocation) - (right - left),
-            top: getTop(lastDrawLocation) + (top - bottom)
-          })
-        }
-      />
-      <Crosshair values={crosshairValues} />
-    </FlexibleXYPlot>
+    />
   )
 })
 
-MultiLineChart.propTypes = {
+TreemapChart.propTypes = {
   className: PT.string,
-  colorType: ScalePT,
-  data: PT.arrayOf(
-    PT.shape({
-      color: NumberOrStringPT,
-      key: NumberOrStringPT,
-      data: SeriesPT
-    })
-  ).isRequired,
+  data: PT.array.isRequired,
   height: NumberOrStringPT,
+  name: PT.string.isRequired,
   width: NumberOrStringPT
 }
 
-MultiLineChart.defaultProps = {
+TreemapChart.defaultProps = {
+  height: 400
+}
+
+/**
+ * ==================================================
+ * SimpleBar
+ * ==================================================
+ */
+export const generateFakeSimpleBarData = () => {
+  return {
+    title: 'company1',
+    children: [
+      { title: 'AgglomerativeCluster', color: '#12939A', size: 100 },
+      { title: 'CommunityStructure', color: '#12939A', size: 75 },
+      { title: 'HierarchicalCluster', color: '#12939A', size: 20 },
+      { title: 'MergeEdge', color: '#12939A', size: 10 },
+      { title: 'BetweennessCentrality', color: '#12939A', size: 35 },
+      { title: 'LinkDistance', color: '#12939A', size: 57 },
+      { title: 'MaxFlowMinCut', color: '#12939A', size: 78 },
+      { title: 'ShortestPaths', color: '#12939A', size: 59 },
+      { title: 'SpanningTree', color: '#12939A', size: 16 }
+    ]
+  }
+}
+
+export const SimpleBar = withTheme(({ data }) => {
+  return (
+    <div style={{ maxWidth: 300, maxHeight: 300, overflow: 'auto' }}>
+      {data.children.map(child => (
+        <div style={{ margin: '10px' }}>
+          <div
+            style={{
+              width: `${child.size}%`,
+              background:
+                'linear-gradient(56deg, rgba(80,153,222,0.73) 0%, rgba(80,153,222,0.37) 57%, rgba(80,153,222,0.11) 100%)',
+              padding: '3px 5px'
+            }}
+          >
+            {child.title}
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+})
+
+SimpleBar.propTypes = {
+  data: PT.object.isRequired
+}
+
+/**
+ * ==================================================
+ * StackedBarChart
+ * ==================================================
+ */
+export const generateFakeStackedBarChartData = () => {
+  return [
+    ['Category', '2015', '2016', '2017', '2018', '2019'],
+    ['Matcha Latte', 43.3, 85.8, 93.7, 32.4, 10.2],
+    ['Milk Tea', 83.1, 73.4, 55.1, 23.4, 8.8],
+    ['Cheese Cocoa', 86.4, 65.2, 82.5, 15.3, 15.2],
+    ['Walnut Brownie', 72.4, 53.9, 39.1, 42.1, 13.3]
+  ]
+}
+
+export const StackedBarChart = withTheme(({ data, height, ...rest }) => {
+  const option = {
+    legend: {},
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+        type: 'shadow'
+      }
+    },
+    grid: {
+      left: '3%',
+      right: '4%',
+      bottom: '3%',
+      containLabel: true
+    },
+    dataset: {
+      source: data
+    },
+    xAxis: { type: 'value' },
+    yAxis: { type: 'category' },
+    series:
+      data &&
+      data[0].map((_, index) => {
+        if (index !== 0) {
+          return {
+            type: 'bar',
+            stack: 'sample',
+            label: {
+              normal: {
+                show: true,
+                position: 'insideRight'
+              }
+            }
+          }
+        }
+      })
+  }
+
+  return (
+    <ReactEcharts
+      option={option}
+      style={{ height: height ? height : '400px', width: '100%' }}
+      {...rest}
+    />
+  )
+})
+
+StackedBarChart.propTypes = {
+  className: PT.string,
+  data: PT.array.isRequired,
+  height: NumberOrStringPT
+}
+
+StackedBarChart.defaultProps = {
   height: 400
 }
