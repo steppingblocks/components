@@ -1,6 +1,9 @@
 import PT from 'prop-types'
 
 const AlignPT = PT.oneOf(['top', 'middle', 'bottom'])
+const SizePT = PT.oneOf(['default', 'large', 'small'])
+export const StringOrNodePT = PT.oneOfType([PT.string, PT.node])
+export const StringOrNumberPT = PT.oneOfType([PT.number, PT.string])
 
 export const ButtonProps = {
   disabled: PT.bool,
@@ -48,8 +51,6 @@ const JustifyPT = PT.oneOf([
   'space-between'
 ])
 
-const SizePT = PT.oneOf(['default', 'large', 'small'])
-
 export const SpacingPT = PT.shape({
   xs: PT.number,
   sm: PT.number,
@@ -63,7 +64,3 @@ export const RowPT = PT.shape({
   justify: JustifyPT,
   type: PT.string
 })
-
-export const StringOrNodePT = PT.oneOfType([PT.string, PT.node])
-
-export const StringOrNumberPT = PT.oneOfType([PT.number, PT.string])
