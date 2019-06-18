@@ -1,3 +1,19 @@
+# [1.4.0](https://github.com/masiamj/components/compare/v1.3.0...v1.4.0) (2019-06-18)
+
+
+### Bug Fixes
+
+* **build:** wip on releases ([077f7c7](https://github.com/masiamj/components/commit/077f7c7))
+* **proptypes:** fix proptypes to solve reference error ([3ca4213](https://github.com/masiamj/components/commit/3ca4213))
+
+
+### Features
+
+* **build:** fixes packaging for external use ([e0ba2c5](https://github.com/masiamj/components/commit/e0ba2c5))
+* **charts:** add charts from echarts ([2646688](https://github.com/masiamj/components/commit/2646688))
+* **charts:** includes react-vis charts ([9839c62](https://github.com/masiamj/components/commit/9839c62))
+* **proptypes:** updates proptypes and display in storybook ([316af2b](https://github.com/masiamj/components/commit/316af2b))
+
 # [1.3.0](https://github.com/masiamj/components/compare/v1.2.0...v1.3.0) (2019-06-07)
 
 
