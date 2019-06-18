@@ -91,145 +91,6 @@ export const generateFakeSunburstChartData = () => {
   }
 
   return data
-  /*return [
-    {
-    children: [{
-      value: 5,
-      children: [{
-        value: 1,
-        itemStyle: { color: popRandomColor() }
-      }, {
-        value: 2,
-        children: [{
-          value: 1,
-          itemStyle: { color: popRandomColor() }
-        }]
-      }, {
-        children: [{
-          value: 1
-        }]
-      }],
-      itemStyle: { color: popRandomColor() }
-    }, {
-      value: 10,
-      children: [{
-        value: 6,
-        children: [{
-          value: 1,
-          itemStyle: { color: popRandomColor() }
-        }, {
-          value: 1
-        }, {
-          value: 1,
-          itemStyle: { color: popRandomColor() }
-        }, {
-          value: 1
-        }],
-        itemStyle: { color: popRandomColor() }
-      }, {
-        value: 2,
-        children: [{
-          value: 1
-        }],
-        itemStyle: { color: popRandomColor() }
-      }, {
-        children: [{
-          value: 1,
-          itemStyle: { color: popRandomColor() }
-        }]
-      }],
-      itemStyle: { color: popRandomColor() }
-    }],
-    itemStyle: { color: popRandomColor() }
-  }, {
-    value: 9,
-    children: [{
-      value: 4,
-      children: [{
-        value: 2,
-        itemStyle: { color: popRandomColor() }
-      }, {
-        children: [{
-          value: 1,
-          itemStyle: { color: popRandomColor() }
-        }]
-      }],
-      itemStyle: { color: popRandomColor() }
-    }, {
-      children: [{
-        value: 3,
-        children: [{
-          value: 1
-        }, {
-          value: 1,
-          itemStyle: { color: popRandomColor() }
-        }]
-      }],
-      itemStyle: { color: popRandomColor() }
-    }],
-    itemStyle: { color: popRandomColor() }
-  }, {
-    value: 7,
-    children: [{
-      children: [{
-        value: 1,
-        itemStyle: { color: popRandomColor() }
-      }, {
-        value: 3,
-        children: [{
-          value: 1,
-          itemStyle: { color: popRandomColor() }
-        }, {
-          value: 1
-        }],
-        itemStyle: { color: popRandomColor() }
-      }, {
-        value: 2,
-        children: [{
-          value: 1
-        }, {
-          value: 1,
-          itemStyle: { color: popRandomColor() }
-        }],
-        itemStyle: { color: popRandomColor() }
-      }],
-      itemStyle: { color: popRandomColor() }
-    }],
-    itemStyle: { color: popRandomColor() }
-  }, {
-    children: [{
-      value: 6,
-      children: [{
-        value: 1,
-        itemStyle: { color: popRandomColor() }
-      }, {
-        value: 2,
-        children: [{
-          value: 2,
-          itemStyle: { color: popRandomColor() }
-        }],
-        itemStyle: { color: popRandomColor() }
-      }, {
-        value: 1,
-        itemStyle: { color: popRandomColor() }
-      }],
-      itemStyle: { color: popRandomColor() }
-    }, {
-      value: 3,
-      children: [{
-        value: 1,
-      }, {
-        children: [{
-          value: 1,
-          itemStyle: { color: popRandomColor() }
-        }]
-      }, {
-        value: 1
-      }],
-      itemStyle: { color: popRandomColor() }
-    }],
-    itemStyle: { color: popRandomColor() }
-  }]*/
 }
 
 export const SunburstChart = withTheme(({ data, height, ...rest }) => {
@@ -537,4 +398,9 @@ StackedBarChart.propTypes = {
 
 StackedBarChart.defaultProps = {
   height: 400
+}
+
+export default {
+  StackedBarChart,
+  SimpleBar
 }
