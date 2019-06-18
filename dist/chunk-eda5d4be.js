@@ -1,5 +1,5 @@
 import React__default from 'react';
-import PropTypes from 'prop-types';
+import PT from 'prop-types';
 
 var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
@@ -15,5 +15,5 @@ function createCommonjsModule(fn, module) {
 	return module = { exports: {} }, fn(module, module.exports), module.exports;
 }
 
-export { createCommonjsModule as a, React__default as b, commonjsGlobal as c, commonjsRequire as d, PropTypes as r, unwrapExports as u };
+export { createCommonjsModule as a, React__default as b, commonjsGlobal as c, commonjsRequire as d, PT as r, unwrapExports as u };
 //# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY2h1bmstZWRhNWQ0YmUuanMiLCJzb3VyY2VzIjpbXSwic291cmNlc0NvbnRlbnQiOltdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7Ozs7Ozs7OyJ9

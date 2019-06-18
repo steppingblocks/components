@@ -1,26 +1,27 @@
-import '../chunk-d8a06a3d.js';
-import { w as withTheme, b as _objectWithoutProperties } from '../withTheme/index-07393603.js';
-import '../chunk-33557649.js';
+import { b as _objectWithoutProperties } from '../chunk-d1e6a1ad.js';
+import '../chunk-64108897.js';
 import '../chunk-eda5d4be.js';
 import React__default from 'react';
 import 'prop-types';
-import '../chunk-1722f712.js';
+import '../chunk-524cc36e.js';
 import '@xstyled/styled-components';
-import '../chunk-2512a442.js';
-import { _ as _Button } from '../chunk-be6096a0.js';
-import '../chunk-4ff4843b.js';
+import { withTheme } from '../withTheme/index.js';
+import { b as ButtonProps } from '../chunk-35f44cf5.js';
+import { _ as _Button } from '../chunk-616fa0f4.js';
+import '../chunk-d07bd2ed.js';
 import 'react-dom';
 import '../chunk-8820e6e0.js';
-import '../chunk-462365a0.js';
+import '../chunk-cf295d49.js';
 
-var CustomButton = function CustomButton(_ref) {
+var CustomButton = withTheme(function (_ref) {
   var content = _ref.content,
       rest = _objectWithoutProperties(_ref, ["content"]);
 
   return React__default.createElement(_Button, rest, content);
-};
+});
+CustomButton.propTypes = ButtonProps;
+CustomButton.defaultProps = {};
+CustomButton.displayName = 'CustomButton';
 
-var CustomButton$1 = withTheme(CustomButton);
-
-export default CustomButton$1;
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9DdXN0b21CdXR0b24vaW5kZXguanMiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFJlYWN0IGZyb20gJ3JlYWN0J1xuaW1wb3J0IHsgQnV0dG9uIH0gZnJvbSAnYW50ZCdcbmltcG9ydCB7IHdpdGhUaGVtZSB9IGZyb20gJy4uL3dpdGhUaGVtZSdcblxuY29uc3QgQ3VzdG9tQnV0dG9uID0gKHsgY29udGVudCwgLi4ucmVzdCB9KSA9PiAoXG4gIDxCdXR0b24gey4uLnJlc3R9Pntjb250ZW50fTwvQnV0dG9uPlxuKVxuXG5leHBvcnQgZGVmYXVsdCB3aXRoVGhlbWUoQ3VzdG9tQnV0dG9uKVxuIl0sIm5hbWVzIjpbIkN1c3RvbUJ1dHRvbiIsImNvbnRlbnQiLCJyZXN0IiwiUmVhY3QiLCJ3aXRoVGhlbWUiXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7OztBQUlBLElBQU1BLFlBQVksR0FBRyxTQUFmQSxZQUFlO01BQUdDLE9BQUgsUUFBR0EsT0FBSDtNQUFlQyxJQUFmOztTQUNuQkMsc0NBQVlELElBQVosRUFBbUJELE9BQW5CLENBRG1CO0NBQXJCOztBQUlBLHFCQUFlRyxTQUFTLENBQUNKLFlBQUQsQ0FBeEI7Ozs7In0=
+export default CustomButton;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9DdXN0b21CdXR0b24vaW5kZXguanMiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFJlYWN0IGZyb20gJ3JlYWN0J1xuaW1wb3J0IFBUIGZyb20gJ3Byb3AtdHlwZXMnXG5pbXBvcnQgeyBCdXR0b24gfSBmcm9tICdhbnRkJ1xuaW1wb3J0IHsgd2l0aFRoZW1lIH0gZnJvbSAnLi4vd2l0aFRoZW1lJ1xuaW1wb3J0IHsgQnV0dG9uUHJvcHMgfSBmcm9tICcuLi9wcm9wdHlwZXMnXG5cbmNvbnN0IEN1c3RvbUJ1dHRvbiA9IHdpdGhUaGVtZSgoeyBjb250ZW50LCAuLi5yZXN0IH0pID0+IChcbiAgPEJ1dHRvbiB7Li4ucmVzdH0+e2NvbnRlbnR9PC9CdXR0b24+XG4pKVxuXG5DdXN0b21CdXR0b24ucHJvcFR5cGVzID0gQnV0dG9uUHJvcHNcblxuQ3VzdG9tQnV0dG9uLmRlZmF1bHRQcm9wcyA9IHt9XG5cbkN1c3RvbUJ1dHRvbi5kaXNwbGF5TmFtZSA9ICdDdXN0b21CdXR0b24nXG5cbmV4cG9ydCBkZWZhdWx0IEN1c3RvbUJ1dHRvblxuIl0sIm5hbWVzIjpbIkN1c3RvbUJ1dHRvbiIsIndpdGhUaGVtZSIsImNvbnRlbnQiLCJyZXN0IiwiUmVhY3QiLCJwcm9wVHlwZXMiLCJCdXR0b25Qcm9wcyIsImRlZmF1bHRQcm9wcyIsImRpc3BsYXlOYW1lIl0sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7Ozs7QUFNQSxJQUFNQSxZQUFZLEdBQUdDLFNBQVMsQ0FBQztNQUFHQyxPQUFILFFBQUdBLE9BQUg7TUFBZUMsSUFBZjs7U0FDN0JDLHNDQUFZRCxJQUFaLEVBQW1CRCxPQUFuQixDQUQ2QjtDQUFELENBQTlCO0FBSUFGLFlBQVksQ0FBQ0ssU0FBYixHQUF5QkMsV0FBekI7QUFFQU4sWUFBWSxDQUFDTyxZQUFiLEdBQTRCLEVBQTVCO0FBRUFQLFlBQVksQ0FBQ1EsV0FBYixHQUEyQixjQUEzQjs7OzsifQ==
