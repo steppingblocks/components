@@ -5,7 +5,7 @@
   "description": "A test component library with component viewer!",
   "author": "masiamj",
   "license": "MIT",
-  "repository": "masiamj/components",
+  "repository": "steppingblocks/components",
   "main": "dist",
   "module": "dist",
   "engines": {
