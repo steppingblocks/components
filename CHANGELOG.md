@@ -6,6 +6,24 @@
 * **build:** wip on releases ([077f7c7](https://github.com/steppingblocks/components/commit/077f7c7))
 * **proptypes:** fix proptypes to solve reference error ([3ca4213](https://github.com/steppingblocks/components/commit/3ca4213))
 * **releases:** fixes repo reference in package.json ([494d847](https://github.com/steppingblocks/components/commit/494d847))
+* **releases:** removes npm step from semantic release ([6dbc894](https://github.com/steppingblocks/components/commit/6dbc894))
+
+
+### Features
+
+* **build:** fixes packaging for external use ([e0ba2c5](https://github.com/steppingblocks/components/commit/e0ba2c5))
+* **charts:** add charts from echarts ([2646688](https://github.com/steppingblocks/components/commit/2646688))
+* **charts:** includes react-vis charts ([9839c62](https://github.com/steppingblocks/components/commit/9839c62))
+* **proptypes:** updates proptypes and display in storybook ([316af2b](https://github.com/steppingblocks/components/commit/316af2b))
+
+# [1.4.0](https://github.com/steppingblocks/components/compare/v1.3.0...v1.4.0) (2019-06-18)
+
+
+### Bug Fixes
+
+* **build:** wip on releases ([077f7c7](https://github.com/steppingblocks/components/commit/077f7c7))
+* **proptypes:** fix proptypes to solve reference error ([3ca4213](https://github.com/steppingblocks/components/commit/3ca4213))
+* **releases:** fixes repo reference in package.json ([494d847](https://github.com/steppingblocks/components/commit/494d847))
 
 
 ### Features
