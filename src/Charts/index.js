@@ -55,6 +55,26 @@ const colors = [
 ]
 const popRandomColor = () => colors[Math.floor(Math.random() * colors.length)]
 
+const addColorToData = data => {
+  if (data && !!data.length) {
+    const coloredData = data.map(obj => {
+      obj.itemStyle = { color: popRandomColor() }
+      if (obj.title) {
+        obj.name = obj.title
+        delete obj.title
+      }
+      if (obj.children && !!obj.children.length) {
+        obj.children = addColorToData(obj.children)
+      }
+      return obj
+    })
+
+    return coloredData
+  } else {
+    return data
+  }
+}
+
 /**
  * ==================================================
  * Sunburst
@@ -100,9 +120,9 @@ export const SunburstChart = withTheme(({ data, height, ...rest }) => {
       type: 'sunburst',
       sort: null,
       highlightPolicy: 'ancestor',
-      data: data,
+      data: addColorToData(data),
       label: {
-        rotate: 'radial'
+        show: false
       },
       levels: [],
       itemStyle: {

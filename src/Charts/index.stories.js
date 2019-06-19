@@ -8,9 +8,9 @@ import {
   generateFakeTreemapChartData,
   SimpleBar,
   StackedBarChart,
+  SunburstChart,
   TreemapChart
 } from './index'
-import SunburstChart from './Sunburst'
 
 const stories = storiesOf('Charts', module)
 
