@@ -56,22 +56,24 @@ const colors = [
 const popRandomColor = () => colors[Math.floor(Math.random() * colors.length)]
 let colorIndex = 0
 
-const addColorToData = data => {
+const modifyDataForChart = (data, addColor) => {
   if (data && !!data.length) {
-    const coloredData = data.map((obj, index) => {
-      obj.itemStyle = { color: colors[colorIndex++] }
-      if (colorIndex >= colors.length) colorIndex = 0
+    const modifiedData = data.map(obj => {
+      if (addColor) {
+        obj.itemStyle = { color: colors[colorIndex++] }
+        if (colorIndex >= colors.length) colorIndex = 0
+      }
       if (obj.title) {
         obj.name = obj.title
         delete obj.title
       }
       if (obj.children && !!obj.children.length) {
-        obj.children = addColorToData(obj.children)
+        obj.children = modifyDataForChart(obj.children)
       }
       return obj
     })
 
-    return coloredData
+    return modifiedData
   } else {
     return data
   }
@@ -122,7 +124,7 @@ export const SunburstChart = withTheme(({ data, height, ...rest }) => {
       type: 'sunburst',
       sort: null,
       highlightPolicy: 'ancestor',
-      data: addColorToData(data),
+      data: modifyDataForChart(data, true),
       label: {
         show: false
       },
@@ -265,19 +267,19 @@ export const TreemapChart = withTheme(({ data, name, height, ...rest }) => {
           show: true,
           formatter: '{b}'
         },
-        /*upperLabel: {
+        upperLabel: {
           normal: {
             show: true,
             height: 30
           }
-        },*/
+        },
         itemStyle: {
           normal: {
             borderColor: '#fff'
           }
         },
         levels: getLevelOption(),
-        data
+        data: modifyDataForChart(data, false)
       }
     ]
   }
