@@ -68,7 +68,7 @@ const modifyDataForChart = (data, addColor) => {
         delete obj.title
       }
       if (obj.children && !!obj.children.length) {
-        obj.children = modifyDataForChart(obj.children)
+        obj.children = modifyDataForChart(obj.children, addColor)
       }
       return obj
     })
@@ -117,9 +117,10 @@ export const generateFakeSunburstChartData = () => {
   return data
 }
 
-export const SunburstChart = withTheme(({ data, height, ...rest }) => {
+export const SunburstChart = withTheme(({ data, name, height, ...rest }) => {
   const option = {
     series: {
+      name,
       radius: ['15%', '80%'],
       type: 'sunburst',
       sort: null,
