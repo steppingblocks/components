@@ -54,11 +54,13 @@ const colors = [
   '#A04438'
 ]
 const popRandomColor = () => colors[Math.floor(Math.random() * colors.length)]
+let colorIndex = 0
 
 const addColorToData = data => {
   if (data && !!data.length) {
-    const coloredData = data.map(obj => {
-      obj.itemStyle = { color: popRandomColor() }
+    const coloredData = data.map((obj, index) => {
+      obj.itemStyle = { color: colors[colorIndex++] }
+      if (colorIndex >= colors.length) colorIndex = 0
       if (obj.title) {
         obj.name = obj.title
         delete obj.title
