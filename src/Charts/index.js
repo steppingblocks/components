@@ -330,7 +330,14 @@ export const generateFakeSimpleBarData = () => {
 
 export const SimpleBar = withTheme(({ data }) => {
   return (
-    <div style={{ maxWidth: 300, maxHeight: 300, overflow: 'auto' }}>
+    <div
+      style={{
+        maxWidth: 300,
+        maxHeight: 300,
+        overflow: 'auto',
+        margin: '0 auto'
+      }}
+    >
       {data.children.map(child => (
         <div style={{ margin: '10px' }}>
           <div
