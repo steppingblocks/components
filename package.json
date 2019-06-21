@@ -137,7 +137,7 @@
   "husky": {
     "hooks": {
       "commit-msg": "./node_modules/.bin/commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "./node_modules/.bin/lint-staged"
+      "pre-commit": "./node_modules/.bin/lint-staged && npm run build && git add dist/*"
     }
   },
   "lint-staged": {
