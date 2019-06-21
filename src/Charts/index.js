@@ -343,13 +343,13 @@ export const SimpleBar = withTheme(({ data }) => {
         <div style={{ margin: '10px' }}>
           <div
             style={{
-              width: `${child.size}%`,
+              width: `${child.value}%`,
               background:
                 'linear-gradient(56deg, rgba(80,153,222,0.73) 0%, rgba(80,153,222,0.37) 57%, rgba(80,153,222,0.11) 100%)',
               padding: '3px 5px'
             }}
           >
-            {child.title}
+            {child.name}
           </div>
         </div>
       ))}
