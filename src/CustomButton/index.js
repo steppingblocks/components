@@ -1,5 +1,4 @@
 import React from 'react'
-import PT from 'prop-types'
 import { Button } from 'antd'
 import { withTheme } from '../withTheme'
 import { ButtonProps } from '../proptypes'
