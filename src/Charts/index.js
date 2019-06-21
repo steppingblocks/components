@@ -280,7 +280,8 @@ export const TreemapChart = withTheme(({ data, name, height, ...rest }) => {
           }
         },
         levels: getLevelOption(),
-        data: modifyDataForChart(data, false)
+        data: modifyDataForChart(data, false),
+        roam: 'move'
       }
     ]
   }
