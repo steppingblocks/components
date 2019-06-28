@@ -1,4 +1,5 @@
 import React from 'react'
+import PT from 'prop-types'
 import EmailInput, { emailValidationRules } from '../EmailInput'
 import PasswordInput, { passwordValidationRules } from '../PasswordInput'
 import { createGenericFormComponent } from '../GenericForm'
@@ -36,8 +37,13 @@ const LoginForm = props => {
       fields={getFormFields(props)}
       submitButtonContent="Log in"
       submitButtonProps={{ block: true, mt: 4 }}
+      onSubmit={props.onSubmit}
     />
   )
+}
+
+LoginForm.propTypes = {
+  onSubmit: PT.func.isRequired
 }
 
 export default LoginForm
