@@ -316,15 +316,15 @@ export const generateFakeSimpleBarData = () => {
   return {
     title: 'company1',
     children: [
-      { title: 'AgglomerativeCluster', color: '#12939A', size: 100 },
-      { title: 'CommunityStructure', color: '#12939A', size: 75 },
-      { title: 'HierarchicalCluster', color: '#12939A', size: 20 },
-      { title: 'MergeEdge', color: '#12939A', size: 10 },
-      { title: 'BetweennessCentrality', color: '#12939A', size: 35 },
-      { title: 'LinkDistance', color: '#12939A', size: 57 },
-      { title: 'MaxFlowMinCut', color: '#12939A', size: 78 },
-      { title: 'ShortestPaths', color: '#12939A', size: 59 },
-      { title: 'SpanningTree', color: '#12939A', size: 16 }
+      { name: 'Agglomerative Cluster', color: '#12939A', value: 100 },
+      { name: 'Community Structure', color: '#12939A', value: 75 },
+      { name: 'Hierarchical Cluster', color: '#12939A', value: 20 },
+      { name: 'Merge Edge', color: '#12939A', value: 10 },
+      { name: 'Betweenness Centrality', color: '#12939A', value: 35 },
+      { name: 'Link Distance', color: '#12939A', value: 57 },
+      { name: 'MaxFlowMinCut', color: '#12939A', value: 78 },
+      { name: 'Shortest Paths', color: '#12939A', value: 59 },
+      { name: 'SpanningTree', color: '#12939A', value: 16 }
     ]
   }
 }
@@ -340,7 +340,7 @@ export const SimpleBar = withTheme(({ data }) => {
       }}
     >
       {data.children.map(child => (
-        <div style={{ margin: '10px' }}>
+        <div style={{ margin: '10px', whiteSpace: 'nowrap' }}>
           <div
             style={{
               width: `${child.value}%`,
