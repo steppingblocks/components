@@ -1,22 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PT from 'prop-types'
-import { Radio, Form } from 'antd'
 import _fp from 'lodash/fp'
-import get from 'lodash/get'
-import isEqual from 'lodash/isEqual'
-import debounce from 'lodash/debounce'
 import styled from '@xstyled/styled-components'
 import SingleLineTextInput from '../../../../../SingleLineTextInput'
-
-const Container = styled(Form)``
-
-const FilterContainer = styled.div`
-  margin: 4px 0px 4px 0px;
-`
-
-const ComponentContainer = styled.div`
-  margin: 12px 0px 12px 0px;
-`
+import RadioGroupWithText from './components/RadioGroupWithText'
+import { createGenericFormComponent } from '../../../../../GenericForm'
 
 /**
  * Text filters
@@ -60,60 +48,29 @@ const selectFilters = [
   }
 ]
 
-/**
- * Get event value
- */
-const getValueFromEvent = _fp.get('target.value')
+const getFormFields = props => [
+  {
+    Component: RadioGroupWithText,
+    name: 'filter',
+    componentProps: {
+      autoFocus: true,
+      ...props
+    }
+  }
+]
 
 const FilterContent = props => {
-  const [selected, setSelected] = useState(0)
-  const [value, setValue] = useState(null)
-
-  /**
-   * Changes filter value
-   * @param {Event} event
-   */
-  const onChange = event => {
-    setSelected(getValueFromEvent(event))
-    setValue(null)
-  }
-
-  /**
-   * Handle text change
-   * @param {Event} event
-   */
-  const _onChangeText = event => {
-    setValue(getValueFromEvent(event))
-  }
-
-  const debouncedOnChange = debounce(_onChangeText, 1000)
+  const GenericImplementation = createGenericFormComponent({
+    name: `form`
+  })
 
   return (
-    <Container>
-      <Radio.Group onChange={onChange} value={selected}>
-        {get(props, 'filters').map(({ component, label }, idx) => {
-          return (
-            <FilterContainer key={idx}>
-              <Radio value={idx} tabIndex={idx}>
-                {label}
-              </Radio>
-              {isEqual(selected, idx) && (
-                <ComponentContainer>
-                  {component({
-                    autoFocus: true,
-                    placeholder: 'Filter text...',
-                    onChange: event => {
-                      event.persist()
-                      debouncedOnChange(event)
-                    }
-                  })}
-                </ComponentContainer>
-              )}
-            </FilterContainer>
-          )
-        })}
-      </Radio.Group>
-    </Container>
+    <GenericImplementation
+      fields={getFormFields(props)}
+      submitButtonContent="Apply"
+      submitButtonProps={{ block: true, size: 'small' }}
+      onSubmit={props.onChange}
+    />
   )
 }
 
@@ -121,8 +78,10 @@ FilterContent.propTypes = {
   filters: PT.array.isRequired
 }
 
-export const TextFilterContent = () => <FilterContent filters={textFilters} />
+export const TextFilterContent = props => (
+  <FilterContent filters={textFilters} {...props} />
+)
 
-export const SelectFilterContent = () => (
-  <FilterContent filters={selectFilters} />
+export const SelectFilterContent = props => (
+  <FilterContent filters={selectFilters} {...props} />
 )

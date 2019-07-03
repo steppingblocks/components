@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import PT from 'prop-types'
 import _fp from 'lodash/fp'
 import get from 'lodash/get'
-import { Option, Select } from 'antd'
+import { Select } from 'antd'
 import styled from '@xstyled/styled-components'
 import { withTheme } from '../../../withTheme'
 

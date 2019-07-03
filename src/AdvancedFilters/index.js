@@ -39,20 +39,30 @@ const FIELDS = {
 }
 
 const AdvancedFilters = withTheme(props => {
-  const [filters, setFilters] = useState([])
+  const [activeFilters, setActiveFilters] = useState([])
 
-  const addFilter = filter => setFilters(filters.concat(filter))
+  const addFilter = filter => setActiveFilters(activeFilters.concat(filter))
 
   const removeFilter = idx => {
-    setFilters(filters.filter((_item, index) => !isEqual(index, idx)))
+    setActiveFilters(
+      activeFilters.filter((_item, index) => !isEqual(index, idx))
+    )
   }
-
-  // console.log(filters)
 
   return (
     <Container>
-      {filters.map((filter, idx) => (
-        <Filter key={idx} filter={filter} onRemove={() => removeFilter(idx)} />
+      {activeFilters.map((filter, idx) => (
+        <Filter
+          key={idx}
+          index={idx}
+          filter={filter}
+          onRemove={() => removeFilter(idx)}
+          onChange={value => {
+            console.log('ON CHANGE')
+            console.log(idx)
+            console.log(value)
+          }}
+        />
       ))}
       <CreateFilterButton fields={FIELDS} onSelect={addFilter} />
     </Container>

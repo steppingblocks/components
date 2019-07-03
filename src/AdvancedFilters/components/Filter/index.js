@@ -28,33 +28,49 @@ const getLabel = _fp.pipe(
   _fp.get('label')
 )
 
+/**
+ * Gets the filter type
+ */
 const getType = _fp.pipe(
   getFilter,
   _fp.get('type')
 )
 
+/**
+ * Index into the PopoverContent
+ */
 const PopoverContentMap = {
   text: TextFilterContent,
   select: SelectFilterContent
 }
 
+/**
+ * Gets popover content
+ * @param {String} type
+ * @param {Object} props
+ */
+const getPopoverContent = (type, props) => {
+  const Component = PopoverContentMap[type]
+  return <Component {...props} />
+}
+
 const Filter = withTheme(props => {
-  const [visible, setVisible] = useState(true)
+  const [popoverVisible, setPopoverVisible] = useState(true)
 
   const label = getLabel(props)
   const type = getType(props)
 
-  const Content = PopoverContentMap[type]
+  const popoverContent = getPopoverContent(type, props)
 
   return (
     <ButtonGroup>
       <Popover
         title={label}
         trigger="click"
-        visible={visible}
+        visible={popoverVisible}
         placement="bottom"
-        content={<Content />}
-        onVisibleChange={setVisible}
+        content={popoverContent}
+        onVisibleChange={setPopoverVisible}
       >
         <CustomButton content={label} />
       </Popover>
@@ -68,6 +84,7 @@ const Filter = withTheme(props => {
 })
 
 Filter.propTypes = {
+  onChange: PT.func.isRequired,
   onRemove: PT.func.isRequired
 }
 
