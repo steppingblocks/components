@@ -1,10 +1,90 @@
 import React from 'react'
 import PT from 'prop-types'
 import _fp from 'lodash/fp'
+import get from 'lodash/get'
+import { Radio } from 'antd'
+import isEqual from 'lodash/isEqual'
 import styled from '@xstyled/styled-components'
 import SingleLineTextInput from '../../../../../SingleLineTextInput'
-import RadioGroupWithText from './components/RadioGroupWithText'
-import { createGenericFormComponent } from '../../../../../GenericForm'
+
+const FilterContainer = styled.div`
+  margin: 4px 0px 4px 0px;
+`
+
+const ComponentContainer = styled.div`
+  margin: 12px 0px 12px 0px;
+`
+
+/** Prop getters */
+const getEventValue = _fp.get('target.value')
+
+const FilterContent = props => {
+  const {
+    filters,
+    formValue,
+    id,
+    InputComponent,
+    inputComponentProps,
+    onChange
+  } = props
+
+  const predicate = get(formValue, `${id}.predicate`, get(filters, `0.value`))
+  const ugValue = get(formValue, `${id}.ugValue`)
+
+  /**
+   * Change handler
+   * @param {Object} updates
+   */
+  const onChangeFormValue = (updates = {}) => {
+    onChange({
+      ...formValue,
+      [id]: Object.assign(get(formValue, id, {}), updates)
+    })
+  }
+
+  /**
+   * Changes filter predicate
+   * @param {HTMLEvent} event
+   */
+  const onChangePredicate = event => {
+    const predicate = getEventValue(event)
+    onChangeFormValue({ predicate, ugValue: undefined })
+  }
+
+  /**
+   * Changes filter user-generated input
+   * @param {HTMLEvent} event
+   */
+  const onChangeUserGeneratedInputValue = event => {
+    const ugValue = getEventValue(event)
+    onChangeFormValue({ ugValue })
+  }
+
+  return (
+    <Radio.Group onChange={onChangePredicate} value={predicate}>
+      {filters.map(({ label, value }, idx) => {
+        return (
+          <FilterContainer key={value}>
+            <Radio value={value}>{label}</Radio>
+            {isEqual(predicate, value) && (
+              <ComponentContainer>
+                <InputComponent
+                  {...inputComponentProps}
+                  onChange={onChangeUserGeneratedInputValue}
+                  value={ugValue}
+                />
+              </ComponentContainer>
+            )}
+          </FilterContainer>
+        )
+      })}
+    </Radio.Group>
+  )
+}
+
+FilterContent.propTypes = {
+  filters: PT.array.isRequired
+}
 
 /**
  * Text filters
@@ -12,23 +92,19 @@ import { createGenericFormComponent } from '../../../../../GenericForm'
 const textFilters = [
   {
     label: 'Equals',
-    value: 'eq',
-    component: options => <SingleLineTextInput {...options} />
+    value: 'eq'
   },
   {
     label: 'Not Equals',
-    value: 'ne',
-    component: options => <SingleLineTextInput {...options} />
+    value: 'ne'
   },
   {
     label: 'Includes',
-    value: 'contains',
-    component: options => <SingleLineTextInput {...options} />
+    value: 'contains'
   },
   {
     label: 'Starts With',
-    value: 'startsWith',
-    component: options => <SingleLineTextInput {...options} />
+    value: 'startsWith'
   }
 ]
 
@@ -38,50 +114,30 @@ const textFilters = [
 const selectFilters = [
   {
     label: 'Equals',
-    value: 'eq',
-    component: options => <h1 {...options}>Equals</h1>
+    value: 'eq'
   },
   {
     label: 'Not Equals',
-    value: 'ne',
-    component: options => <h1 {...options}>Not Equals</h1>
+    value: 'ne'
   }
 ]
 
-const getFormFields = props => [
-  {
-    Component: RadioGroupWithText,
-    name: 'filter',
-    componentProps: {
-      autoFocus: true,
-      ...props
-    }
-  }
-]
-
-const FilterContent = props => {
-  const GenericImplementation = createGenericFormComponent({
-    name: `form`
-  })
-
-  return (
-    <GenericImplementation
-      fields={getFormFields(props)}
-      submitButtonContent="Apply"
-      submitButtonProps={{ block: true, size: 'small' }}
-      onSubmit={props.onChange}
-    />
-  )
-}
-
-FilterContent.propTypes = {
-  filters: PT.array.isRequired
-}
+const Placeholder = () => <h1>Hi</h1>
 
 export const TextFilterContent = props => (
-  <FilterContent filters={textFilters} {...props} />
+  <FilterContent
+    InputComponent={SingleLineTextInput}
+    inputComponentProps={{ autoFocus: true }}
+    filters={textFilters}
+    {...props}
+  />
 )
 
 export const SelectFilterContent = props => (
-  <FilterContent filters={selectFilters} {...props} />
+  <FilterContent
+    InputComponent={Placeholder}
+    inputComponentProps={{}}
+    filters={selectFilters}
+    {...props}
+  />
 )

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import PT from 'prop-types'
-import _fp from 'lodash/fp'
 import get from 'lodash/get'
+import omit from 'lodash/omit'
 import { Button, Popover } from 'antd'
 import styled from '@xstyled/styled-components'
 import { withTheme } from '../../../withTheme'
@@ -16,33 +16,21 @@ const ButtonGroup = styled(Button.Group)`
 `
 
 /**
- * Gets the filter
- */
-const getFilter = _fp.get('filter')
-
-/**
- * Gets the filter label
- */
-const getLabel = _fp.pipe(
-  getFilter,
-  _fp.get('label')
-)
-
-/**
- * Gets the filter type
- */
-const getType = _fp.pipe(
-  getFilter,
-  _fp.get('type')
-)
-
-/**
  * Index into the PopoverContent
  */
 const PopoverContentMap = {
   text: TextFilterContent,
   select: SelectFilterContent
 }
+
+/**
+ * Creates the button popover label
+ * @param {String} fieldName
+ * @param {String} predicate
+ * @param {String} value
+ */
+const createLabel = (fieldName, predicate = '', value = '') =>
+  `${fieldName} ${predicate} ${value}`
 
 /**
  * Gets popover content
@@ -57,10 +45,20 @@ const getPopoverContent = (type, props) => {
 const Filter = withTheme(props => {
   const [popoverVisible, setPopoverVisible] = useState(true)
 
-  const label = getLabel(props)
-  const type = getType(props)
+  const { formValue, id, label, type, onChange, removeFilter } = props
 
-  const popoverContent = getPopoverContent(type, props)
+  const onRemove = () => {
+    onChange(omit(formValue, [id]))
+    removeFilter(id)
+  }
+
+  const { predicate, ugValue } = get(formValue, id, {})
+
+  const popoverContent = getPopoverContent(type, {
+    formValue,
+    id,
+    onChange
+  })
 
   return (
     <ButtonGroup>
@@ -72,13 +70,9 @@ const Filter = withTheme(props => {
         content={popoverContent}
         onVisibleChange={setPopoverVisible}
       >
-        <CustomButton content={label} />
+        <CustomButton content={createLabel(label, predicate, ugValue)} />
       </Popover>
-      <CustomButton
-        icon="close"
-        type="danger"
-        onClick={get(props, 'onRemove')}
-      />
+      <CustomButton icon="close" type="danger" onClick={onRemove} />
     </ButtonGroup>
   )
 })

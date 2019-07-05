@@ -132,7 +132,8 @@
     "echarts-for-react": "^2.0.15-beta.0",
     "lodash": "^4.17.11",
     "prop-types": "^15.7.2",
-    "styled-components": "^4.2.1"
+    "styled-components": "^4.2.1",
+    "uuid": "^3.3.2"
   },
   "husky": {
     "hooks": {

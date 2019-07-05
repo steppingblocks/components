@@ -1,4 +1,4 @@
-import { c as _extends } from '../chunk-fee9d9e4.js';
+import { c as _extends } from '../chunk-039ee305.js';
 import React__default from 'react';
 import { ThemeProvider, Box } from '@xstyled/styled-components';
 

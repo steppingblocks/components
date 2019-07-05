@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import PT from 'prop-types'
-import isEqual from 'lodash/isEqual'
+import uuid from 'uuid/v4'
+import _ from 'lodash'
 import styled from '@xstyled/styled-components'
 import { withTheme } from '../withTheme'
-import Filter from './components/Filter'
 import CreateFilterButton from './components/CreateFilterButton'
+import { createGenericFormComponent } from '../GenericForm'
+import FiltersFormComponent from './components/FiltersFormComponent'
 
 const Container = styled.div`
   align-items: center;
@@ -15,61 +17,56 @@ const Container = styled.div`
   padding: 12px;
 `
 
-const FIELDS = {
-  category: {
-    label: 'Category',
-    type: 'select'
-  },
-  subcategory: {
-    label: 'Subcategory',
-    type: 'select'
-  },
-  title: {
-    label: 'Title',
-    type: 'text'
-  },
-  company: {
-    label: 'Company',
-    type: 'text'
-  },
-  industry: {
-    label: 'Industry',
-    type: 'select'
+const getFormFields = props => [
+  {
+    Component: FiltersFormComponent,
+    name: 'filter',
+    componentProps: {
+      ...props
+    }
   }
-}
+]
+
+const GenericImplementation = createGenericFormComponent({
+  name: `advanced_filters_form`
+})
 
 const AdvancedFilters = withTheme(props => {
   const [activeFilters, setActiveFilters] = useState([])
 
-  const addFilter = filter => setActiveFilters(activeFilters.concat(filter))
-
-  const removeFilter = idx => {
+  const addActiveFilter = filter =>
     setActiveFilters(
-      activeFilters.filter((_item, index) => !isEqual(index, idx))
+      activeFilters.concat({
+        id: uuid(),
+        ...filter
+      })
     )
+
+  const removeActiveFilter = removalId => {
+    const newActiveFilters = activeFilters.filter(({ id }) => removalId !== id)
+    setActiveFilters(newActiveFilters)
   }
 
   return (
     <Container>
-      {activeFilters.map((filter, idx) => (
-        <Filter
-          key={idx}
-          index={idx}
-          filter={filter}
-          onRemove={() => removeFilter(idx)}
-          onChange={value => {
-            console.log('ON CHANGE')
-            console.log(idx)
-            console.log(value)
-          }}
-        />
-      ))}
-      <CreateFilterButton fields={FIELDS} onSelect={addFilter} />
+      <GenericImplementation
+        fields={getFormFields({
+          ..._.pick(props, ['onChange', 'value']),
+          activeFilters,
+          removeFilter: removeActiveFilter
+        })}
+        submitButtonContent="Apply"
+        submitButtonProps={{ block: true, size: 'small' }}
+        onSubmit={console.log}
+      />
+      <CreateFilterButton fields={props.fields} onSelect={addActiveFilter} />
     </Container>
   )
 })
 
-AdvancedFilters.propTypes = {}
+AdvancedFilters.propTypes = {
+  fields: PT.object.isRequired
+}
 
 AdvancedFilters.defaultProps = {}
 
