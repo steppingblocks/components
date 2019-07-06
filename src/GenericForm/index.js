@@ -34,6 +34,7 @@ export const createGenericFormComponent = config => {
         fields,
         form,
         submitButtonContent,
+        submitButtonHidden,
         submitButtonProps
       } = this.props
       const submitting = get(this.state, 'submitting')
@@ -63,13 +64,15 @@ export const createGenericFormComponent = config => {
               </SFormItem>
             )
           )}
-          <CustomButton
-            content={submitButtonContent}
-            disabled={submitting}
-            htmlType="submit"
-            type="primary"
-            {...submitButtonProps}
-          />
+          {submitButtonHidden ? null : (
+            <CustomButton
+              content={submitButtonContent}
+              disabled={submitting}
+              htmlType="submit"
+              type="primary"
+              {...submitButtonProps}
+            />
+          )}
         </Form>
       )
     }

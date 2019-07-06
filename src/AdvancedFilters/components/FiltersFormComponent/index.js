@@ -1,22 +1,37 @@
-import React, { useState } from 'react'
-import PT from 'prop-types'
+import React from 'react'
 import _fp from 'lodash/fp'
 import styled from '@xstyled/styled-components'
+import CreateFilterButton from '../CreateFilterButton'
 import Filter from '../Filter'
 
+const Container = styled.div`
+  width: 100%;
+`
+
 const FiltersFormComponent = props => {
-  const { activeFilters, onChange, removeFilter, value } = props
+  const {
+    activeFilters,
+    addActiveFilter,
+    fields,
+    onChange,
+    removeFilter,
+    value
+  } = props
 
-  return activeFilters.map(filter => (
-    <Filter
-      {...filter}
-      onChange={onChange}
-      formValue={value}
-      removeFilter={removeFilter}
-    />
-  ))
-
-  return null
+  return (
+    <Container>
+      {activeFilters.map(filter => (
+        <Filter
+          {...filter}
+          key={filter.id}
+          onChange={onChange}
+          formValue={value}
+          removeFilter={removeFilter}
+        />
+      ))}
+      <CreateFilterButton fields={fields} onSelect={addActiveFilter} />
+    </Container>
+  )
 }
 
 export default FiltersFormComponent

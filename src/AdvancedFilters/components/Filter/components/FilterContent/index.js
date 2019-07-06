@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PT from 'prop-types'
 import _fp from 'lodash/fp'
 import get from 'lodash/get'
@@ -28,7 +28,7 @@ const FilterContent = props => {
     onChange
   } = props
 
-  const predicate = get(formValue, `${id}.predicate`, get(filters, `0.value`))
+  const predicate = get(formValue, `${id}.predicate`)
   const ugValue = get(formValue, `${id}.ugValue`)
 
   /**
@@ -48,7 +48,7 @@ const FilterContent = props => {
    */
   const onChangePredicate = event => {
     const predicate = getEventValue(event)
-    onChangeFormValue({ predicate, ugValue: undefined })
+    onChangeFormValue({ predicate })
   }
 
   /**
@@ -60,9 +60,13 @@ const FilterContent = props => {
     onChangeFormValue({ ugValue })
   }
 
+  useEffect(() => {
+    onChangeFormValue({ predicate: get(filters, `0.value`) })
+  }, [])
+
   return (
     <Radio.Group onChange={onChangePredicate} value={predicate}>
-      {filters.map(({ label, value }, idx) => {
+      {filters.map(({ label, value }) => {
         return (
           <FilterContainer key={value}>
             <Radio value={value}>{label}</Radio>
@@ -86,49 +90,30 @@ FilterContent.propTypes = {
   filters: PT.array.isRequired
 }
 
-/**
- * Text filters
- */
-const textFilters = [
-  {
-    label: 'Equals',
-    value: 'eq'
-  },
-  {
-    label: 'Not Equals',
-    value: 'ne'
-  },
-  {
-    label: 'Includes',
-    value: 'contains'
-  },
-  {
-    label: 'Starts With',
-    value: 'startsWith'
-  }
-]
-
-/**
- * Select filters
- */
-const selectFilters = [
-  {
-    label: 'Equals',
-    value: 'eq'
-  },
-  {
-    label: 'Not Equals',
-    value: 'ne'
-  }
-]
-
 const Placeholder = () => <h1>Hi</h1>
 
 export const TextFilterContent = props => (
   <FilterContent
     InputComponent={SingleLineTextInput}
     inputComponentProps={{ autoFocus: true }}
-    filters={textFilters}
+    filters={[
+      {
+        label: 'Equals',
+        value: '$eq'
+      },
+      {
+        label: 'Not Equals',
+        value: '$ne'
+      },
+      {
+        label: 'Includes',
+        value: '$contains'
+      },
+      {
+        label: 'Starts With',
+        value: '$startsWith'
+      }
+    ]}
     {...props}
   />
 )
@@ -137,7 +122,16 @@ export const SelectFilterContent = props => (
   <FilterContent
     InputComponent={Placeholder}
     inputComponentProps={{}}
-    filters={selectFilters}
+    filters={[
+      {
+        label: 'Equals',
+        value: '$eq'
+      },
+      {
+        label: 'Not Equals',
+        value: '$ne'
+      }
+    ]}
     {...props}
   />
 )

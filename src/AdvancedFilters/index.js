@@ -4,29 +4,28 @@ import uuid from 'uuid/v4'
 import _ from 'lodash'
 import styled from '@xstyled/styled-components'
 import { withTheme } from '../withTheme'
-import CreateFilterButton from './components/CreateFilterButton'
 import { createGenericFormComponent } from '../GenericForm'
 import FiltersFormComponent from './components/FiltersFormComponent'
 
 const Container = styled.div`
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
   padding: 12px;
 `
 
+/**
+ * Gets form fields
+ * @param {Object} props
+ */
 const getFormFields = props => [
   {
     Component: FiltersFormComponent,
     name: 'filter',
-    componentProps: {
-      ...props
-    }
+    componentProps: props
   }
 ]
 
+/**
+ * Create form implementation
+ */
 const GenericImplementation = createGenericFormComponent({
   name: `advanced_filters_form`
 })
@@ -34,6 +33,10 @@ const GenericImplementation = createGenericFormComponent({
 const AdvancedFilters = withTheme(props => {
   const [activeFilters, setActiveFilters] = useState([])
 
+  /**
+   * Add new filter
+   * @param {Object} filter
+   */
   const addActiveFilter = filter =>
     setActiveFilters(
       activeFilters.concat({
@@ -42,8 +45,15 @@ const AdvancedFilters = withTheme(props => {
       })
     )
 
+  /**
+   * Removes filter
+   * @param {UUID} removalId
+   */
   const removeActiveFilter = removalId => {
-    const newActiveFilters = activeFilters.filter(({ id }) => removalId !== id)
+    const newActiveFilters = _.remove(
+      activeFilters,
+      ({ id }) => id !== removalId
+    )
     setActiveFilters(newActiveFilters)
   }
 
@@ -51,15 +61,16 @@ const AdvancedFilters = withTheme(props => {
     <Container>
       <GenericImplementation
         fields={getFormFields({
-          ..._.pick(props, ['onChange', 'value']),
+          ..._.pick(props, ['fields', 'onChange', 'value']),
+          addActiveFilter,
           activeFilters,
           removeFilter: removeActiveFilter
         })}
+        submitButtonHidden={_.isEqual(activeFilters.length, 0)}
         submitButtonContent="Apply"
-        submitButtonProps={{ block: true, size: 'small' }}
+        submitButtonProps={{ ml: '8px' }}
         onSubmit={console.log}
       />
-      <CreateFilterButton fields={props.fields} onSelect={addActiveFilter} />
     </Container>
   )
 })

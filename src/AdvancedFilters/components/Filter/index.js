@@ -12,7 +12,7 @@ import {
 } from './components/FilterContent'
 
 const ButtonGroup = styled(Button.Group)`
-  margin: 8px 12px 8px 0px;
+  margin: 8px;
 `
 
 /**
@@ -29,8 +29,11 @@ const PopoverContentMap = {
  * @param {String} predicate
  * @param {String} value
  */
-const createLabel = (fieldName, predicate = '', value = '') =>
-  `${fieldName} ${predicate} ${value}`
+const createLabel = (fieldName, predicate = '', value = '') => (
+  <React.Fragment>
+    <strong>{fieldName}</strong>&nbsp;{predicate}&nbsp;<strong>{value}</strong>
+  </React.Fragment>
+)
 
 /**
  * Gets popover content
@@ -48,8 +51,8 @@ const Filter = withTheme(props => {
   const { formValue, id, label, type, onChange, removeFilter } = props
 
   const onRemove = () => {
-    onChange(omit(formValue, [id]))
     removeFilter(id)
+    onChange(omit(formValue, [id]))
   }
 
   const { predicate, ugValue } = get(formValue, id, {})

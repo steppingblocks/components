@@ -7,9 +7,8 @@ import styled from '@xstyled/styled-components'
 import { withTheme } from '../../../withTheme'
 
 const SSelect = styled(Select)`
-  margin-bottom: 8px;
-  margin-top: 8px;
-  width: 200px;
+  margin: 8px;
+  width: 200px !important;
 `
 
 /**
