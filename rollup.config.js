@@ -22,7 +22,10 @@ export default {
       modules: true,
       extensions: ['.css', '.less'],
       use: [
-        ['less', { javascriptEnabled: true, modifyVars: theme.modifedVars }]
+        [
+          'less',
+          { javascriptEnabled: true, modifyVars: theme.getModifiedVars() }
+        ]
       ]
     }),
     url(),

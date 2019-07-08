@@ -11,7 +11,9 @@ module.exports = async ({ config }) => {
         loader: 'less-loader',
         options: {
           javascriptEnabled: true,
-          modifyVars: theme.modifedVars
+          modifyVars: theme.getModifiedVars({
+            antdOverrides: { primaryColor: 'green' }
+          })
         }
       }
     ],

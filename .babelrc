@@ -1,5 +1,8 @@
 {
-  "ignore": ["**/*.spec.js", "**/*.stories.js"],
+  "ignore": [
+    "**/*.spec.js",
+    "**/*.stories.js"
+  ],
   "plugins": [
     [
       "import",

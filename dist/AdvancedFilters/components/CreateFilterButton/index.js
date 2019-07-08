@@ -2,9 +2,9 @@ import { _ as _slicedToArray, a as _objectSpread, b as _taggedTemplateLiteral } 
 import React__default, { Component, cloneElement, createElement, Children, useState } from 'react';
 import PropTypes__default, { oneOfType, string, number, bool, any, func, object, node, arrayOf, shape } from 'prop-types';
 import { c as createCommonjsModule, u as unwrapExports } from '../../../chunk-5732a1e2.js';
-import { w as withTheme } from '../../../withTheme/index-c61dc960.js';
 import styled from 'styled-components';
 import { _ as _fp } from '../../../chunk-69193f69.js';
+import withTheme from '../../../withTheme/index.js';
 import { d as require$$2$1, w as warning, _ as _configProvider } from '../../../chunk-218dc193.js';
 import { k as _inherits$5, j as _classCallCheck$5, l as _possibleConstructorReturn$5, g as _extends$3, m as _objectWithoutProperties } from '../../../chunk-55a8f221.js';
 import ReactDOM__default, { findDOMNode, unmountComponentAtNode } from 'react-dom';

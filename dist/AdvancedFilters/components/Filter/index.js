@@ -2,9 +2,9 @@ import { _ as _slicedToArray, b as _taggedTemplateLiteral } from '../../../chunk
 import require$$1, { Component, useState } from 'react';
 import PropTypes__default from 'prop-types';
 import { c as createCommonjsModule, u as unwrapExports } from '../../../chunk-5732a1e2.js';
-import { w as withTheme } from '../../../withTheme/index-c61dc960.js';
 import styled from 'styled-components';
 import '../../../chunk-69193f69.js';
+import withTheme from '../../../withTheme/index.js';
 import { b as require$$2, _ as _configProvider } from '../../../chunk-218dc193.js';
 import { k as _inherits, j as _classCallCheck, l as _possibleConstructorReturn, m as _objectWithoutProperties, g as _extends } from '../../../chunk-55a8f221.js';
 import 'react-dom';

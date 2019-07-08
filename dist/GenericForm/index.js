@@ -2,9 +2,9 @@ import { c as _inherits, d as _createClass, e as _classCallCheck, f as _possible
 import React__default from 'react';
 import 'prop-types';
 import { c as createCommonjsModule, u as unwrapExports } from '../chunk-5732a1e2.js';
-import { w as withTheme } from '../withTheme/index-c61dc960.js';
 import 'styled-components';
 import '../chunk-69193f69.js';
+import withTheme from '../withTheme/index.js';
 import { r as require$$0$1, a as require$$0$2, b as require$$2$1, _ as _configProvider } from '../chunk-218dc193.js';
 import { r as require$$0$3, a as require$$1$3 } from '../chunk-469aa2a1.js';
 import { a as anObject, w as wks, I as Iterators, $ as $DP, c as createDesc, b as cof, r as require$$1, d as $export, t as toObject, e as require$$0, f as toLength, _ as _typeof, g as _extends, h as _extends$1, i as classCallCheck, o as objectWithoutProperties } from '../chunk-55a8f221.js';
