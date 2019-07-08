@@ -1,5 +1,4 @@
 import React from 'react'
-import _fp from 'lodash/fp'
 import styled from '@xstyled/styled-components'
 import CreateFilterButton from '../CreateFilterButton'
 import Filter from '../Filter'

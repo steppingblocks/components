@@ -37,9 +37,9 @@ const includes = (option = '', value = '') => option.includes(value)
 const getFields = _fp.pipe(
   _fp.get('fields'),
   _fp.entries,
-  _fp.map(([key, obj]) => ({
+  _fp.map(([fieldName, obj]) => ({
     ...obj,
-    key
+    fieldName
   }))
 )
 
@@ -51,10 +51,10 @@ const CreateFilterButton = withTheme(props => {
    * onChange handler
    * @param {String} value
    */
-  const onChange = key => {
+  const onChange = fieldName => {
     props.onSelect({
-      ...get(props, `fields.${key}`),
-      key
+      ...get(props, `fields.${fieldName}`),
+      fieldName
     })
     setSearchValue(undefined)
   }
@@ -77,7 +77,10 @@ const CreateFilterButton = withTheme(props => {
       filterOption={filterOption}
     >
       {fields.map(field => (
-        <Select.Option key={get(field, 'key')} value={get(field, 'key')}>
+        <Select.Option
+          key={get(field, 'fieldName')}
+          value={get(field, 'fieldName')}
+        >
           {get(field, 'label')}
         </Select.Option>
       ))}

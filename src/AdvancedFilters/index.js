@@ -62,21 +62,22 @@ const AdvancedFilters = withTheme(props => {
       <GenericImplementation
         fields={getFormFields({
           ..._.pick(props, ['fields', 'onChange', 'value']),
-          addActiveFilter,
           activeFilters,
+          addActiveFilter,
           removeFilter: removeActiveFilter
         })}
         submitButtonHidden={_.isEqual(activeFilters.length, 0)}
         submitButtonContent="Apply"
         submitButtonProps={{ ml: '8px' }}
-        onSubmit={console.log}
+        onSubmit={props.onSubmit}
       />
     </Container>
   )
 })
 
 AdvancedFilters.propTypes = {
-  fields: PT.object.isRequired
+  fields: PT.object.isRequired,
+  onSubmit: PT.func.isRequired
 }
 
 AdvancedFilters.defaultProps = {}
@@ -84,3 +85,8 @@ AdvancedFilters.defaultProps = {}
 AdvancedFilters.displayName = AdvancedFilters
 
 export default AdvancedFilters
+
+export const FilterTypes = {
+  SELECT: 'select',
+  TEXT: 'text'
+}

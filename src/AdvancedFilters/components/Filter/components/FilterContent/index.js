@@ -20,6 +20,7 @@ const getEventValue = _fp.get('target.value')
 
 const FilterContent = props => {
   const {
+    fieldName,
     filters,
     formValue,
     id,
@@ -61,7 +62,7 @@ const FilterContent = props => {
   }
 
   useEffect(() => {
-    onChangeFormValue({ predicate: get(filters, `0.value`) })
+    onChangeFormValue({ fieldName, predicate: get(filters, `0.value`) })
   }, [])
 
   return (
@@ -112,6 +113,10 @@ export const TextFilterContent = props => (
       {
         label: 'Starts With',
         value: '$startsWith'
+      },
+      {
+        label: 'Ends With',
+        value: '$endsWith'
       }
     ]}
     {...props}

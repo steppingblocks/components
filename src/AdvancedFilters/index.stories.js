@@ -1,38 +1,38 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { action } from '@storybook/addon-actions'
-import { boolean, text, withKnobs } from '@storybook/addon-knobs'
-import AdvancedFilters from './index'
+import { withKnobs } from '@storybook/addon-knobs'
+import AdvancedFilters, { FilterTypes } from './index'
 
 const stories = storiesOf('AdvancedFilters', module)
 
 stories.add('default', () => {
-  const FIELDS = {
-    category: {
-      label: 'Category',
-      type: 'select'
+  const props = {
+    fields: {
+      category: {
+        label: 'Category',
+        type: FilterTypes.SELECT
+      },
+      subcategory: {
+        label: 'Subcategory',
+        type: FilterTypes.SELECT
+      },
+      title: {
+        label: 'Title',
+        type: FilterTypes.TEXT
+      },
+      company: {
+        label: 'Company',
+        type: FilterTypes.TEXT
+      },
+      industry: {
+        label: 'Industry',
+        type: FilterTypes.SELECT
+      }
     },
-    subcategory: {
-      label: 'Subcategory',
-      type: 'select'
-    },
-    title: {
-      label: 'Title',
-      type: 'text'
-    },
-    company: {
-      label: 'Company',
-      type: 'text'
-    },
-    industry: {
-      label: 'Industry',
-      type: 'select'
-    }
+    onSubmit: console.log
   }
 
-  const props = {}
-
-  return <AdvancedFilters fields={FIELDS} {...props} />
+  return <AdvancedFilters {...props} />
 })
 
 stories.addDecorator(withKnobs)

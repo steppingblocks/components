@@ -21,10 +21,8 @@ export const createGenericFormComponent = config => {
       this.setState({ submitting: true })
       this.props.form.validateFieldsAndScroll((err, values) => {
         if (!err) {
-          console.log('Received values of form: ', values)
           this.props.onSubmit(values)
         }
-        console.group(err)
         this.setState({ submitting: false })
       })
     }

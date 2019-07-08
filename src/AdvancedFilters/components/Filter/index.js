@@ -48,7 +48,15 @@ const getPopoverContent = (type, props) => {
 const Filter = withTheme(props => {
   const [popoverVisible, setPopoverVisible] = useState(true)
 
-  const { formValue, id, label, type, onChange, removeFilter } = props
+  const {
+    fieldName,
+    formValue,
+    id,
+    label,
+    type,
+    onChange,
+    removeFilter
+  } = props
 
   const onRemove = () => {
     removeFilter(id)
@@ -58,6 +66,7 @@ const Filter = withTheme(props => {
   const { predicate, ugValue } = get(formValue, id, {})
 
   const popoverContent = getPopoverContent(type, {
+    fieldName,
     formValue,
     id,
     onChange
@@ -82,7 +91,7 @@ const Filter = withTheme(props => {
 
 Filter.propTypes = {
   onChange: PT.func.isRequired,
-  onRemove: PT.func.isRequired
+  removeFilter: PT.func.isRequired
 }
 
 Filter.defaultProps = {}
