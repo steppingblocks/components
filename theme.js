@@ -14,8 +14,8 @@ const antdTheme = {
   warningColor: '#faad14',
   errorColor: '#f5222d',
   fontSizeBase: '14px',
-  headingColor: 'rgba(0, 0, 0, 0,8)',
-  headingColorSecondary: 'rgba(0, 0, 0, 0,5)',
+  headingColor: 'rgba(0, 0, 0, 0.8)',
+  headingColorSecondary: 'rgba(0, 0, 0, 0.5)',
   disabledColor: 'rgba(0, 0, 0, 0.25)',
   borderRadiusBase: '4px',
   borderColorBase: '#d9d9d9',
@@ -26,7 +26,10 @@ const antdTheme = {
  * Theme
  */
 const getTheme = (params = {}) => {
-  const antdOverrides = Object.assign(antdTheme, _.get(params, 'antdOverrides'))
+  const antdOverrides = Object.assign(
+    antdTheme,
+    _.get(params, 'antdOverrides', {})
+  )
   return _.merge(params, { antdOverrides })
 }
 exports.getTheme = getTheme
