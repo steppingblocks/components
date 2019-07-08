@@ -1,5 +1,3 @@
-import 'antd/dist/antd.less'
-import '../src/vendorStyles'
 import { configure, addDecorator } from '@storybook/react'
 import { withInfo } from '@storybook/addon-info'
 

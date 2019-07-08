@@ -2,7 +2,7 @@ import React from 'react'
 import get from 'lodash/get'
 import omit from 'lodash/omit'
 import { Icon, Input } from 'antd'
-import { withTheme } from '../withTheme'
+import withTheme from '../withTheme'
 
 const SIcon = withTheme(Icon)
 const SInput = withTheme(Input)

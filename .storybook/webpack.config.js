@@ -1,4 +1,5 @@
 const path = require('path')
+const theme = require('../theme')
 
 module.exports = async ({ config }) => {
   config.module.rules.push({
@@ -9,7 +10,8 @@ module.exports = async ({ config }) => {
       {
         loader: 'less-loader',
         options: {
-          javascriptEnabled: true
+          javascriptEnabled: true,
+          modifyVars: theme.modifedVars
         }
       }
     ],

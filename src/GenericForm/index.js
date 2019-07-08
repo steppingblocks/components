@@ -2,7 +2,7 @@ import React from 'react'
 import { Form } from 'antd'
 import get from 'lodash/get'
 import pick from 'lodash/pick'
-import { withTheme } from '../withTheme'
+import withTheme from '../withTheme'
 import CustomButton from '../CustomButton'
 
 /**

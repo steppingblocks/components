@@ -3,8 +3,8 @@ import React from 'react'
 import PT from 'prop-types'
 import _fp from 'lodash/fp'
 import { Layout, Row } from 'antd'
-import styled from '@xstyled/styled-components'
-import { withTheme } from '../withTheme'
+import styled from 'styled-components'
+import withTheme from '../withTheme'
 import CustomButton from '../CustomButton'
 
 const { Header } = Layout

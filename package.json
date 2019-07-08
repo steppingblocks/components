@@ -17,11 +17,11 @@
   ],
   "scripts": {
     "build-storybook": "build-storybook",
-    "build": "NODE_ENV=production run-s clean && run-p build:es",
-    "build:watch": "run-p build:es:watch",
+    "build": "NODE_ENV=production run-s build:clean && run-p build:es",
+    "build:clean": "rimraf dist",
     "build:es": "rollup -c",
     "build:es:watch": "rollup -c -w",
-    "clean": "rimraf dist",
+    "build:watch": "run-p build:es:watch",
     "commit": "git-cz",
     "generate:component:dumb": "hygen component dumb",
     "generate:component:hoc": "hygen component hoc",
@@ -125,14 +125,14 @@
     "lib"
   ],
   "dependencies": {
-    "@xstyled/styled-components": "^1.3.0",
-    "@xstyled/system": "^1.3.0",
     "antd": "^3.18.2",
+    "deep-rename-keys": "^0.2.1",
     "echarts": "^4.2.1",
     "echarts-for-react": "^2.0.15-beta.0",
     "lodash": "^4.17.11",
+    "polished": "^3.4.1",
     "prop-types": "^15.7.2",
-    "styled-components": "^4.2.1",
+    "styled-components": "^4.3.2",
     "uuid": "^3.3.2"
   },
   "husky": {

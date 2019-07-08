@@ -3,8 +3,8 @@ import PT from 'prop-types'
 import _fp from 'lodash/fp'
 import get from 'lodash/get'
 import { Select } from 'antd'
-import styled from '@xstyled/styled-components'
-import { withTheme } from '../../../withTheme'
+import styled from 'styled-components'
+import withTheme from '../../../withTheme'
 
 const SSelect = styled(Select)`
   margin: 8px;

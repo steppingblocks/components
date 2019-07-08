@@ -2,7 +2,7 @@ import React from 'react'
 import PT from 'prop-types'
 import get from 'lodash/get'
 import { Layout } from 'antd'
-import { withTheme } from '../withTheme'
+import withTheme from '../withTheme'
 
 const { Content } = Layout
 

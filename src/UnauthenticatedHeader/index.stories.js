@@ -2,7 +2,7 @@ import React from 'react'
 import { Typography } from 'antd'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
-import { withTheme } from '../withTheme'
+import withTheme from '../withTheme'
 import UnauthenticatedHeader from './index'
 
 const stories = storiesOf('UnauthenticatedHeader', module)

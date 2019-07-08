@@ -3,8 +3,8 @@ import PT from 'prop-types'
 import get from 'lodash/get'
 import omit from 'lodash/omit'
 import { Button, Popover } from 'antd'
-import styled from '@xstyled/styled-components'
-import { withTheme } from '../../../withTheme'
+import styled from 'styled-components'
+import withTheme from '../../../withTheme'
 import CustomButton from '../../../CustomButton'
 import {
   TextFilterContent,

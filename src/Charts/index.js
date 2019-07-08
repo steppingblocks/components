@@ -4,7 +4,7 @@
 import React from 'react'
 import PT from 'prop-types'
 import ReactEcharts from 'echarts-for-react'
-import { withTheme } from '../withTheme'
+import withTheme from '../withTheme'
 
 /**
  * ==================================================
@@ -151,7 +151,7 @@ export const SunburstChart = withTheme(({ data, name, height, ...rest }) => {
   return (
     <ReactEcharts
       option={option}
-      style={{ height: height ? height : '400px', width: '100%' }}
+      style={{ height: height || '400px', width: '100%' }}
       {...rest}
     />
   )
@@ -289,7 +289,7 @@ export const TreemapChart = withTheme(({ data, name, height, ...rest }) => {
   return (
     <ReactEcharts
       option={option}
-      style={{ height: height ? height : '400px', width: '100%' }}
+      style={{ height: height || '400px', width: '100%' }}
       {...rest}
     />
   )
@@ -417,7 +417,7 @@ export const StackedBarChart = withTheme(({ data, height, ...rest }) => {
   return (
     <ReactEcharts
       option={option}
-      style={{ height: height ? height : '400px', width: '100%' }}
+      style={{ height: height || '400px', width: '100%' }}
       {...rest}
     />
   )

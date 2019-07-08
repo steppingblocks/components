@@ -4,7 +4,7 @@ import _fp from 'lodash/fp'
 import get from 'lodash/get'
 import { Radio } from 'antd'
 import isEqual from 'lodash/isEqual'
-import styled from '@xstyled/styled-components'
+import styled from 'styled-components'
 import SingleLineTextInput from '../../../../../SingleLineTextInput'
 
 const FilterContainer = styled.div`

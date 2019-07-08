@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from '@xstyled/styled-components'
+import styled from 'styled-components'
 import CreateFilterButton from '../CreateFilterButton'
 import Filter from '../Filter'
 

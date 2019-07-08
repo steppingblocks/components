@@ -3,7 +3,7 @@ import { Typography } from 'antd'
 import { storiesOf } from '@storybook/react'
 import UnauthenticatedLayout from './index'
 import UnauthenticatedHeader from '../UnauthenticatedHeader'
-import { withTheme } from '../withTheme'
+import withTheme from '../withTheme'
 import CenteredLayout from '../CenteredLayout'
 import MultiColumnLayout from '../MultiColumnLayout'
 
