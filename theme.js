@@ -1,3 +1,4 @@
+const _ = require('lodash')
 const _fp = require('lodash/fp')
 const deepRename = require('deep-rename-keys')
 
@@ -24,11 +25,11 @@ const antdTheme = {
 /**
  * Theme
  */
-const getTheme = ({ antdOverrides = {} } = {}) => ({
-  antdOverrides: Object.assign(antdTheme, antdOverrides)
-})
+const getTheme = (params = {}) => {
+  const antdOverrides = Object.assign(antdTheme, _.get(params, 'antdOverrides'))
+  return _.merge(params, { antdOverrides })
+}
 exports.getTheme = getTheme
 
-const getModifedVars = ({ antdOverrides = {} } = {}) =>
-  modifyVars(getTheme({ antdOverrides }))
+const getModifedVars = (params = {}) => modifyVars(getTheme(params))
 exports.getModifiedVars = getModifedVars
