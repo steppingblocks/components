@@ -8,11 +8,11 @@ const modifyVars = _fp.pipe(
 )
 
 const antdTheme = {
-  primaryColor: '#DC2E48',
-  linkColor: '#1890ff',
-  successColor: '#52c41a',
-  warningColor: '#faad14',
-  errorColor: '#f5222d',
+  primaryColor: '#5099DE',
+  linkColor: '5099DE',
+  successColor: '#30BC9D',
+  warningColor: '#FF9552',
+  errorColor: '#EE6352',
   fontSizeBase: '14px',
   headingColor: 'rgba(0, 0, 0, 0.8)',
   headingColorSecondary: 'rgba(0, 0, 0, 0.5)',

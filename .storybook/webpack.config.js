@@ -12,7 +12,7 @@ module.exports = async ({ config }) => {
         options: {
           javascriptEnabled: true,
           modifyVars: theme.getModifiedVars({
-            antdOverrides: { primaryColor: 'green' }
+            antdOverrides: {}
           })
         }
       }
