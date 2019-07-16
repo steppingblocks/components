@@ -1,45 +1,71 @@
 import React from 'react'
 import PT from 'prop-types'
 import PasswordInput, { passwordValidationRules } from '../PasswordInput'
-import { createGenericFormComponent } from '../GenericForm'
+import GenericForm, { getError } from '../GenericForm'
 
+/**
+ * Gets form fields
+ * @param {Object} props
+ */
 const getFormFields = props => [
   {
     Component: PasswordInput,
-    componentProps: {},
-    fieldConfig: {
-      rules: passwordValidationRules
+    formItemProps: {
+      label: 'Password'
     },
-    label: 'Password',
+    inputProps: {
+      autoFocus: true,
+      type: 'password'
+    },
     name: 'password'
   },
   {
     Component: PasswordInput,
-    componentProps: {},
-    fieldConfig: {
-      rules: passwordValidationRules
+    formItemProps: {
+      label: 'Confirm Password'
     },
-    label: 'Confirm Password',
+    inputProps: {
+      type: 'password'
+    },
     name: 'passwordConfirmation'
   }
 ]
 
+/**
+ * Form validation function
+ * @param {Object} param
+ */
+const validate = ({ password, passwordConfirmation } = {}) => ({
+  password: getError(password, passwordValidationRules, 'Invalid Password'),
+  passwordConfirmation: getError(
+    passwordConfirmation,
+    [...passwordValidationRules, () => password === passwordConfirmation],
+    'Invalid Password Confirmation'
+  )
+})
+
 const ResetPasswordForm = props => {
-  const GenericImplementation = createGenericFormComponent({
-    name: 'reset_password_form'
-  })
+  const formFields = getFormFields(props)
+
   return (
-    <GenericImplementation
-      fields={getFormFields(props)}
-      submitButtonContent="Submit"
+    <GenericForm
+      fields={formFields}
+      formProps={{
+        validate,
+        onSubmit: props.onSubmit
+      }}
+      submitButtonContent="Reset password"
       submitButtonProps={{ block: true, mt: 4 }}
-      onSubmit={props.onSubmit}
     />
   )
 }
 
 ResetPasswordForm.propTypes = {
   onSubmit: PT.func.isRequired
+}
+
+ResetPasswordForm.defaultProps = {
+  onSubmit: console.log
 }
 
 export default ResetPasswordForm

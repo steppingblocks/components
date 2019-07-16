@@ -1,39 +1,56 @@
 import React from 'react'
 import PT from 'prop-types'
 import EmailInput, { emailValidationRules } from '../EmailInput'
-import { createGenericFormComponent } from '../GenericForm'
+import GenericForm, { getError } from '../GenericForm'
 
+/**
+ * Gets form fields
+ * @param {Object} props
+ */
 const getFormFields = props => [
   {
     Component: EmailInput,
-    componentProps: {
+    formItemProps: {
+      label: 'Email'
+    },
+    inputProps: {
       autoFocus: true,
       placeholder: 'john.smith@email.com'
     },
-    fieldConfig: {
-      rules: emailValidationRules
-    },
-    label: 'Email',
     name: 'email'
   }
 ]
 
+/**
+ * Form validation function
+ * @param {Object} param
+ */
+const validate = ({ email, password } = {}) => ({
+  email: getError(email, emailValidationRules, 'Invalid Email')
+})
+
 const ForgotPasswordForm = props => {
-  const GenericImplementation = createGenericFormComponent({
-    name: 'forgot_password_form'
-  })
+  const formFields = getFormFields(props)
+
   return (
-    <GenericImplementation
-      fields={getFormFields(props)}
+    <GenericForm
+      fields={formFields}
+      formProps={{
+        validate,
+        onSubmit: props.onSubmit
+      }}
       submitButtonContent="Submit"
       submitButtonProps={{ block: true, mt: 4 }}
-      onSubmit={props.onSubmit}
     />
   )
 }
 
 ForgotPasswordForm.propTypes = {
   onSubmit: PT.func.isRequired
+}
+
+ForgotPasswordForm.defaultProps = {
+  onSubmit: console.log
 }
 
 export default ForgotPasswordForm

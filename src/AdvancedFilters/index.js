@@ -4,7 +4,7 @@ import uuid from 'uuid/v4'
 import _ from 'lodash'
 import styled from 'styled-components'
 import withTheme from '../withTheme'
-import { createGenericFormComponent } from '../GenericForm'
+import GenericForm from '../GenericForm'
 import FiltersFormComponent from './components/FiltersFormComponent'
 
 const Container = styled.div`
@@ -18,17 +18,10 @@ const Container = styled.div`
 const getFormFields = props => [
   {
     Component: FiltersFormComponent,
-    name: 'filter',
-    componentProps: props
+    inputProps: props,
+    name: 'filter'
   }
 ]
-
-/**
- * Create form implementation
- */
-const GenericImplementation = createGenericFormComponent({
-  name: `advanced_filters_form`
-})
 
 const AdvancedFilters = withTheme(props => {
   const [activeFilters, setActiveFilters] = useState([])
@@ -57,19 +50,21 @@ const AdvancedFilters = withTheme(props => {
     setActiveFilters(newActiveFilters)
   }
 
+  const formFields = getFormFields({
+    ..._.pick(props, ['fields', 'onChange', 'value']),
+    activeFilters,
+    addActiveFilter,
+    removeFilter: removeActiveFilter
+  })
+
   return (
     <Container>
-      <GenericImplementation
-        fields={getFormFields({
-          ..._.pick(props, ['fields', 'onChange', 'value']),
-          activeFilters,
-          addActiveFilter,
-          removeFilter: removeActiveFilter
-        })}
+      <GenericForm
+        fields={formFields}
+        formProps={{ onSubmit: props.onSubmit }}
         submitButtonHidden={_.isEqual(activeFilters.length, 0)}
         submitButtonContent="Apply"
-        submitButtonProps={{ ml: '8px' }}
-        onSubmit={props.onSubmit}
+        submitButtonProps={{ style: { marginLeft: '8px' } }}
       />
     </Container>
   )
@@ -80,7 +75,9 @@ AdvancedFilters.propTypes = {
   onSubmit: PT.func.isRequired
 }
 
-AdvancedFilters.defaultProps = {}
+AdvancedFilters.defaultProps = {
+  onSubmit: console.log
+}
 
 AdvancedFilters.displayName = AdvancedFilters
 
