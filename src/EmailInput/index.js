@@ -1,8 +1,11 @@
 import React from 'react'
+import validator from 'validator'
 import SingleLineTextInput from '../SingleLineTextInput'
 import { InputProps } from '../proptypes'
 
-const EmailInput = props => <SingleLineTextInput icon="mail" {...props} />
+const EmailInput = props => {
+  return <SingleLineTextInput icon="mail" {...props} />
+}
 
 EmailInput.propTypes = {
   ...InputProps
@@ -10,8 +13,4 @@ EmailInput.propTypes = {
 
 export default EmailInput
 
-export const emailValidationRules = [
-  { required: true, message: 'Required' },
-  { type: 'email', message: 'Please provide a valid email' },
-  { max: 250, message: 'Must be less than 250 characters' }
-]
+export const emailValidationRules = [validator.isEmail]

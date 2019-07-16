@@ -2,79 +2,101 @@ import React from 'react'
 import PT from 'prop-types'
 import EmailInput, { emailValidationRules } from '../EmailInput'
 import PasswordInput, { passwordValidationRules } from '../PasswordInput'
-import { createGenericFormComponent } from '../GenericForm'
-import SingleLineTextInput from '../SingleLineTextInput'
+import GenericForm, { getError } from '../GenericForm'
+import SingleLineTextInput, {
+  requiredValidationRules
+} from '../SingleLineTextInput'
 
+/**
+ * Gets form fields
+ * @param {Object} props
+ */
 const getFormFields = props => [
   {
     Component: SingleLineTextInput,
-    componentProps: {
+    formItemProps: {
+      label: 'First name'
+    },
+    inputProps: {
       autoFocus: true,
       icon: 'user',
-      ref: React.createRef()
+      placeholder: 'John'
     },
-    fieldConfig: {
-      rules: [
-        { required: true, message: 'A value is required' },
-        { max: 250, message: 'Must be less than 250 characters' }
-      ]
-    },
-    label: 'First name',
     name: 'firstName'
   },
   {
     Component: SingleLineTextInput,
-    componentProps: {
+    formItemProps: {
+      label: 'Last name'
+    },
+    inputProps: {
+      autoFocus: true,
       icon: 'user',
-      ref: React.createRef()
+      placeholder: 'Smith'
     },
-    fieldConfig: {
-      rules: [
-        { required: true, message: 'A value is required' },
-        { max: 250, message: 'Must be less than 250 characters' }
-      ]
-    },
-    label: 'Last name',
     name: 'lastName'
   },
   {
     Component: EmailInput,
-    componentProps: {
+    formItemProps: {
+      label: 'Email'
+    },
+    inputProps: {
+      autoFocus: true,
       placeholder: 'john.smith@email.com'
     },
-    fieldConfig: {
-      rules: emailValidationRules
-    },
-    label: 'Email',
     name: 'email'
   },
   {
     Component: PasswordInput,
-    componentProps: {},
-    fieldConfig: {
-      rules: passwordValidationRules
+    formItemProps: {
+      label: 'Password'
     },
-    label: 'Password',
+    inputProps: {},
     name: 'password'
   }
 ]
 
+/**
+ * Validation function
+ * @param {Object} param
+ */
+const validate = ({ email, firstName, lastName, password }) => ({
+  email: getError(email, emailValidationRules, 'Invalid Email'),
+  firstName: getError(
+    firstName,
+    requiredValidationRules,
+    'First name is required'
+  ),
+  lastName: getError(
+    lastName,
+    requiredValidationRules,
+    'Last name is required'
+  ),
+  password: getError(password, passwordValidationRules, 'Invalid Password')
+})
+
 const RegisterForm = props => {
-  const GenericImplementation = createGenericFormComponent({
-    name: 'register_form'
-  })
+  const formFields = getFormFields(props)
   return (
-    <GenericImplementation
-      fields={getFormFields(props)}
+    <GenericForm
+      fields={formFields}
+      formProps={{
+        validate,
+        onSubmit: props.onSubmit
+      }}
       submitButtonContent="Sign up"
       submitButtonProps={{ block: true, mt: 4 }}
-      onSubmit={props.onSubmit}
     />
   )
 }
 
 RegisterForm.propTypes = {
   onSubmit: PT.func.isRequired
+}
+
+RegisterForm.defaultProps = {
+  onSubmit: console.log
 }
 
 export default RegisterForm
