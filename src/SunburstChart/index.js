@@ -1,7 +1,7 @@
 import React from 'react'
 import PT from 'prop-types'
 import ReactEcharts from 'echarts-for-react'
-import { withTheme } from '../withTheme'
+import withTheme from '../withTheme'
 import { NumberOrStringPT } from '../proptypes'
 import {
   getRandomNumberInRange,

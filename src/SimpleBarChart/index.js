@@ -1,6 +1,6 @@
 import React from 'react'
 import PT from 'prop-types'
-import { withTheme } from '../withTheme'
+import withTheme from '../withTheme'
 
 /**
  * ==================================================
