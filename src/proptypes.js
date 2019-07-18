@@ -64,3 +64,5 @@ export const RowPT = PT.shape({
   justify: JustifyPT,
   type: PT.string
 })
+
+export const NumberOrStringPT = PT.oneOfType([PT.number, PT.string])

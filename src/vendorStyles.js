@@ -1,0 +1,5 @@
+import 'mapbox-gl/dist/mapbox-gl.css'
+import 'mapbox-gl/dist/svg/mapboxgl-ctrl-compass.svg'
+import 'mapbox-gl/dist/svg/mapboxgl-ctrl-geolocate.svg'
+import 'mapbox-gl/dist/svg/mapboxgl-ctrl-zoom-in.svg'
+import 'mapbox-gl/dist/svg/mapboxgl-ctrl-zoom-out.svg'
